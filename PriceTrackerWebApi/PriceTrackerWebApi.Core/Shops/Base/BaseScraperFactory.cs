@@ -1,8 +1,6 @@
-﻿using PriceTrackerWebApi.Core.Products;
-using PriceTrackerWebApi.Core.Scrapers;
-using PriceTrackerWebApi.Core.Utility;
+﻿using PriceTrackerWebApi.Core.Utility;
 
-namespace PriceTrackerWebApi.Core.Scrapers.Factories
+namespace PriceTrackerWebApi.Core.Shops.Base
 {
     public abstract class BaseScraperFactory<TScraper, TProduct> : IDisposable
         where TScraper : BaseScraper<TProduct>

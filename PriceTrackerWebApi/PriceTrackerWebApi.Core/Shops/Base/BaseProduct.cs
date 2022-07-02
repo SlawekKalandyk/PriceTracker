@@ -1,6 +1,6 @@
 ﻿using PriceTrackerWebApi.Core.Traits;
 
-namespace PriceTrackerWebApi.Core.Products
+namespace PriceTrackerWebApi.Core.Shops.Base
 {
     public abstract record BaseProduct(GeneralInformation GeneralInformation)
     {

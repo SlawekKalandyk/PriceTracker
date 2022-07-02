@@ -1,8 +1,8 @@
 ﻿using HtmlAgilityPack;
-using PriceTrackerWebApi.Core.Products;
+using PriceTrackerWebApi.Core.Scrapers;
 using PriceTrackerWebApi.Core.Traits;
 
-namespace PriceTrackerWebApi.Core.Scrapers
+namespace PriceTrackerWebApi.Core.Shops.Base
 {
     public abstract class BaseScraper<T> : IGeneralInformationScraper, IPriceScraper, IAvailabilityScraper where T : BaseProduct
     {

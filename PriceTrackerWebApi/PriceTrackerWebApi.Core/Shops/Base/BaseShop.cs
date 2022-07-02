@@ -1,6 +1,4 @@
-﻿using PriceTrackerWebApi.Core.Products;
-
-namespace PriceTrackerWebApi.Core.Shops
+﻿namespace PriceTrackerWebApi.Core.Shops.Base
 {
     public abstract class BaseShop<T> where T : BaseProduct
     {

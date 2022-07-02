@@ -1,4 +1,4 @@
-﻿using PriceTrackerWebApi.Core.Scrapers.Factories;
+﻿using PriceTrackerWebApi.Core.Shops.XKom;
 
 namespace PriceTrackerWebApi.Tests.CoreTests
 {

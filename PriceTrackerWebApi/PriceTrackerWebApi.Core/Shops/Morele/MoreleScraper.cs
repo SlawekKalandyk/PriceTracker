@@ -1,8 +1,8 @@
 ﻿using System.Xml.XPath;
-using PriceTrackerWebApi.Core.Products;
+using PriceTrackerWebApi.Core.Shops.Base;
 using PriceTrackerWebApi.Core.Traits;
 
-namespace PriceTrackerWebApi.Core.Scrapers
+namespace PriceTrackerWebApi.Core.Shops.Morele
 {
     public class MoreleScraper : BaseScraper<MoreleProduct>
     {

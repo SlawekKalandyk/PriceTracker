@@ -1,9 +1,10 @@
 ﻿using System.Text.RegularExpressions;
 using System.Xml.XPath;
-using PriceTrackerWebApi.Core.Products;
+using PriceTrackerWebApi.Core.Scrapers;
+using PriceTrackerWebApi.Core.Shops.Base;
 using PriceTrackerWebApi.Core.Traits;
 
-namespace PriceTrackerWebApi.Core.Scrapers
+namespace PriceTrackerWebApi.Core.Shops.XKom
 {
     public class XKomScraper : BaseScraper<XKomProduct>
     {

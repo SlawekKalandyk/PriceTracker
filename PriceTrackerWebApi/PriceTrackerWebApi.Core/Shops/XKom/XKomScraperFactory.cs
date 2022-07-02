@@ -1,7 +1,6 @@
-﻿using PriceTrackerWebApi.Core.Products;
-using PriceTrackerWebApi.Core.Scrapers;
+﻿using PriceTrackerWebApi.Core.Shops.Base;
 
-namespace PriceTrackerWebApi.Core.Scrapers.Factories
+namespace PriceTrackerWebApi.Core.Shops.XKom
 {
     public class XKomScraperFactory : BaseScraperFactory<XKomScraper, XKomProduct>
     {
