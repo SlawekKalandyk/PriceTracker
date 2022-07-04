@@ -2,7 +2,7 @@
 
 namespace PriceTracker.Scraper
 {
-    public class ConsoleApp : IHostedService
+    public class ScraperService : IHostedService, IDisposable
     {
         public Task StartAsync(CancellationToken cancellationToken)
         {
@@ -12,6 +12,10 @@ namespace PriceTracker.Scraper
         public Task StopAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

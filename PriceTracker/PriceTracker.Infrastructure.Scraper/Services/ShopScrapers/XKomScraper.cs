@@ -1,12 +1,14 @@
-﻿using System.Text.RegularExpressions;
+﻿using HtmlAgilityPack;
+using PriceTracker.Application.Scraper.Common.Interfaces;
+using PriceTracker.Application.Scraper.Common.Interfaces.ShopScrapers;
+using PriceTracker.Domain.Entities;
+using PriceTracker.Domain.ValueObjects;
+using System.Text.RegularExpressions;
 using System.Xml.XPath;
-using PriceTracker.Application.Scraper.Scrapers;
-using PriceTracker.Application.Scraper.Shops.Base;
-using PriceTracker.Application.Scraper.Traits;
 
-namespace PriceTracker.Application.Scraper.Shops.XKom
+namespace PriceTracker.Infrastructure.Scraper.Services.ShopScrapers
 {
-    public class XKomScraper : BaseScraper<XKomProduct>
+    public class XKomScraper : BaseShopScraper, IXKomScraper
     {
         private readonly XPathExpression _addToCartXPathExpression = XPathExpression.Compile(@"//*[text()[contains(., 'Dodaj do koszyka')]]");
         private readonly XPathExpression _availabilityXPathExpression = XPathExpression.Compile(@"descendant-or-self::*[text()[contains(., 'Dostępny')]]");
@@ -14,31 +16,32 @@ namespace PriceTracker.Application.Scraper.Shops.XKom
         private readonly XPathExpression _productNameXPathExpression = XPathExpression.Compile(@"//*[self::h1]");
         private readonly Regex _priceRegex = new(@"(\d+\s*,*\d*)");
 
-        public XKomScraper(string url, string html, DateTime? timeStamp = null) : base(url, html, timeStamp)
+        public XKomScraper(IWebsiteScraper websiteScraper, IDateTimeProvider dateTimeProvider) : base(websiteScraper, dateTimeProvider)
         {
         }
 
-        public override XKomProduct Scrape(XKomProduct? product = null)
+        protected override GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument)
         {
-            product ??= new XKomProduct((this as IGeneralInformationScraper).ScrapeGeneralInformation());
-            product.AvailabilityHistory.Add((this as IAvailabilityScraper).ScrapeAvailability());
-            product.PriceHistory.Add((this as IPriceScraper).ScrapePrice());
-            return product;
-        }
-
-        public override GeneralInformation ScrapeGeneralInformation()
-        {
-            var productNameNode = HtmlDocument.DocumentNode.SelectSingleNode(_productNameXPathExpression);
+            var productNameNode = htmlDocument.DocumentNode.SelectSingleNode(_productNameXPathExpression);
             var productName = productNameNode == null ? "" : productNameNode.InnerText;
-            return new GeneralInformation(Url, productName);
+            return new GeneralProductInformation
+            {
+                Name = productName,
+                Url = url
+            };
         }
 
-        public override Price ScrapePrice()
+        protected override Price ScrapePrice(HtmlDocument htmlDocument, DateTime timeStamp)
         {
-            var addToCartNode = HtmlDocument.DocumentNode.SelectSingleNode(_addToCartXPathExpression);
+            var addToCartNode = htmlDocument.DocumentNode.SelectSingleNode(_addToCartXPathExpression);
             if (addToCartNode == null)
             {
-                return new Price(0m, 0m, TimeStamp);
+                return new Price
+                {
+                    CurrentPrice = 0m,
+                    Discount = 0m,
+                    TimeStamp = timeStamp
+                };
             }
 
             var priceNodesAncestor = addToCartNode
@@ -65,16 +68,24 @@ namespace PriceTracker.Application.Scraper.Shops.XKom
 
             var currentPrice = discountedPrice == 0m ? fullPrice : discountedPrice;
             var discount = fullPrice - discountedPrice;
-
-            return new Price(currentPrice, discount, TimeStamp);
+            return new Price
+            {
+                CurrentPrice = currentPrice,
+                Discount = discount,
+                TimeStamp = timeStamp
+            };
         }
 
-        public override Availability ScrapeAvailability()
+        protected override Availability ScrapeAvailability(HtmlDocument htmlDocument, DateTime timeStamp)
         {
-            var addToCartNode = HtmlDocument.DocumentNode.SelectSingleNode(_addToCartXPathExpression);
+            var addToCartNode = htmlDocument.DocumentNode.SelectSingleNode(_addToCartXPathExpression);
             if (addToCartNode == null)
             {
-                return new Availability(false, TimeStamp);
+                return new Availability
+                {
+                    IsAvailable = false,
+                    TimeStamp = timeStamp
+                };
             }
 
             var availabilityNodeAncestor = addToCartNode
@@ -84,7 +95,11 @@ namespace PriceTracker.Application.Scraper.Shops.XKom
                 .ParentNode
                 .ParentNode
                 .ParentNode;
-            return new Availability(availabilityNodeAncestor.SelectSingleNode(_availabilityXPathExpression) != null, TimeStamp);
+            return new Availability
+            {
+                IsAvailable = availabilityNodeAncestor.SelectSingleNode(_availabilityXPathExpression) != null,
+                TimeStamp = timeStamp
+            };
         }
 
         private decimal XKomPriceToDecimal(string xKomPrice)

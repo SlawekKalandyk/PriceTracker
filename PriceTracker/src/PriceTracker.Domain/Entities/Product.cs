@@ -7,6 +7,8 @@ namespace PriceTracker.Domain.Entities
     {
         public GeneralProductInformation GeneralInformation { get; set; }
 
+        public bool IsTracked { get; set; } = true;
+
         public IList<Price> PriceHistory { get; private set; } = new List<Price>();
 
         public IList<Availability> AvailabilityHistory { get; private set; } = new List<Availability>();
