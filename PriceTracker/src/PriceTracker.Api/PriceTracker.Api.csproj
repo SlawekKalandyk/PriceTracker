@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PriceTracker.Infrastructure.Scraper\PriceTracker.Infrastructure.Scraper.csproj" />
+    <ProjectReference Include="..\PriceTracker.Application.Api\PriceTracker.Application.Api.csproj" />
+    <ProjectReference Include="..\PriceTracker.Application.Scraper\PriceTracker.Application.Scraper.csproj" />
+    <ProjectReference Include="..\PriceTracker.Infrastructure.Api\PriceTracker.Infrastructure.Api.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,21 @@
+using PriceTracker.Api;
+using PriceTracker.Application.Api;
+using PriceTracker.Application.Scraper;
+using PriceTracker.Infrastructure.Api;
+using PriceTracker.Infrastructure.Scraper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddApiApplicationServices(builder.Configuration);
+builder.Services.AddApiInfrastructureServices(builder.Configuration);
+
+builder.Services.AddScraperApplicationServices(builder.Configuration);
+builder.Services.AddScraperInfrastructureServices(builder.Configuration);
+
+builder.Services.AddApiServices(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
