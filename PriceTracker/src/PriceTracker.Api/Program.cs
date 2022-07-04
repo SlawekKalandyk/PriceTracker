@@ -1,8 +1,6 @@
 using PriceTracker.Api;
 using PriceTracker.Application.Api;
-using PriceTracker.Application.Scraper;
 using PriceTracker.Infrastructure.Api;
-using PriceTracker.Infrastructure.Scraper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApiApplicationServices(builder.Configuration);
 builder.Services.AddApiInfrastructureServices(builder.Configuration);
-
-builder.Services.AddScraperApplicationServices(builder.Configuration);
-builder.Services.AddScraperInfrastructureServices(builder.Configuration);
 
 builder.Services.AddApiServices(builder.Configuration);
 

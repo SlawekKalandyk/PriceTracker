@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,9 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PriceTracker.Infrastructure.Scraper\PriceTracker.Infrastructure.Scraper.csproj" />
     <ProjectReference Include="..\PriceTracker.Application.Api\PriceTracker.Application.Api.csproj" />
-    <ProjectReference Include="..\PriceTracker.Application.Scraper\PriceTracker.Application.Scraper.csproj" />
     <ProjectReference Include="..\PriceTracker.Infrastructure.Api\PriceTracker.Infrastructure.Api.csproj" />
   </ItemGroup>
 
