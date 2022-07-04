@@ -1,6 +1,6 @@
 using PriceTracker.Api;
-using PriceTracker.Application.Api;
-using PriceTracker.Infrastructure.Api;
+using PriceTracker.Api.Application;
+using PriceTracker.Api.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

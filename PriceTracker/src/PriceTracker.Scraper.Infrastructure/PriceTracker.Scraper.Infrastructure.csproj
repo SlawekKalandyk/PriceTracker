@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PriceTracker.Domain\PriceTracker.Domain.csproj" />
+    <ProjectReference Include="..\PriceTracker.Scraper.Application\PriceTracker.Scraper.Application.csproj" />
+  </ItemGroup>
+
+</Project>

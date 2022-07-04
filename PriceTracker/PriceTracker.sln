@@ -5,27 +5,27 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Api", "src\PriceTracker.Api\PriceTracker.Api.csproj", "{7A335D45-4894-4A11-A0DB-4914797E86D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Application.Scraper", "src\PriceTracker.Application.Scraper\PriceTracker.Application.Scraper.csproj", "{299A3E24-2965-4E81-9BBE-E0263C8D35B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Scraper.Application", "src\PriceTracker.Scraper.Application\PriceTracker.Scraper.Application.csproj", "{299A3E24-2965-4E81-9BBE-E0263C8D35B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Tests", "tests\PriceTracker.Tests\PriceTracker.Tests.csproj", "{6BA7E173-B947-4C44-A0D0-A33F7985BDB8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Domain", "src\PriceTracker.Domain\PriceTracker.Domain.csproj", "{F8E7E30C-3C66-4DDF-9C9D-6AA65D0A9154}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Application.Api", "src\PriceTracker.Application.Api\PriceTracker.Application.Api.csproj", "{FA667CFD-FD9A-4541-AF56-1539F143DFBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Api.Application", "src\PriceTracker.Api.Application\PriceTracker.Api.Application.csproj", "{FA667CFD-FD9A-4541-AF56-1539F143DFBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B614784C-7C25-4751-9695-77205C0C58DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6A5C330F-5BE0-46F7-948F-A00CBDD5F825}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Infrastructure.Api", "src\PriceTracker.Infrastructure.Api\PriceTracker.Infrastructure.Api.csproj", "{22ADA63A-8D48-4751-9A0A-BE724ADDC768}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.Infrastructure.Scraper", "PriceTracker.Infrastructure.Scraper\PriceTracker.Infrastructure.Scraper.csproj", "{B7AC841C-99CE-4229-87C3-7589C953B5F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.Scraper", "PriceTracker.Scraper\PriceTracker.Scraper.csproj", "{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Api.Infrastructure", "src\PriceTracker.Api.Infrastructure\PriceTracker.Api.Infrastructure.csproj", "{22ADA63A-8D48-4751-9A0A-BE724ADDC768}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{D521B6AA-9163-4387-BB42-0E3DDEB00926}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scraper", "scraper", "{2E92112B-DA4F-4459-9793-509447DF28A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Scraper.Infrastructure", "src\PriceTracker.Scraper.Infrastructure\PriceTracker.Scraper.Infrastructure.csproj", "{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Scraper", "src\PriceTracker.Scraper\PriceTracker.Scraper.csproj", "{0F372096-4630-4B25-9A39-E9299D266C12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +42,7 @@ Global
 		{7A335D45-4894-4A11-A0DB-4914797E86D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A335D45-4894-4A11-A0DB-4914797E86D1}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
 		{299A3E24-2965-4E81-9BBE-E0263C8D35B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{299A3E24-2965-4E81-9BBE-E0263C8D35B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{299A3E24-2965-4E81-9BBE-E0263C8D35B3}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
 		{299A3E24-2965-4E81-9BBE-E0263C8D35B3}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
 		{299A3E24-2965-4E81-9BBE-E0263C8D35B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,20 +77,22 @@ Global
 		{22ADA63A-8D48-4751-9A0A-BE724ADDC768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22ADA63A-8D48-4751-9A0A-BE724ADDC768}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22ADA63A-8D48-4751-9A0A-BE724ADDC768}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{0F372096-4630-4B25-9A39-E9299D266C12}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,10 +104,10 @@ Global
 		{F8E7E30C-3C66-4DDF-9C9D-6AA65D0A9154} = {B614784C-7C25-4751-9695-77205C0C58DD}
 		{FA667CFD-FD9A-4541-AF56-1539F143DFBA} = {D521B6AA-9163-4387-BB42-0E3DDEB00926}
 		{22ADA63A-8D48-4751-9A0A-BE724ADDC768} = {D521B6AA-9163-4387-BB42-0E3DDEB00926}
-		{B7AC841C-99CE-4229-87C3-7589C953B5F9} = {2E92112B-DA4F-4459-9793-509447DF28A0}
-		{9176D4C1-7F59-4074-8D12-F3E7614D1CF7} = {2E92112B-DA4F-4459-9793-509447DF28A0}
 		{D521B6AA-9163-4387-BB42-0E3DDEB00926} = {B614784C-7C25-4751-9695-77205C0C58DD}
 		{2E92112B-DA4F-4459-9793-509447DF28A0} = {B614784C-7C25-4751-9695-77205C0C58DD}
+		{A09D7A3C-2EF1-43E5-AA0E-D2263F0C2133} = {2E92112B-DA4F-4459-9793-509447DF28A0}
+		{0F372096-4630-4B25-9A39-E9299D266C12} = {2E92112B-DA4F-4459-9793-509447DF28A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F072A7C6-029E-4198-9640-B061B52E2EE6}

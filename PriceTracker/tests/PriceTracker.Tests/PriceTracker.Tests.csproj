@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PriceTracker.Application.Scraper\PriceTracker.Application.Scraper.csproj" />
+    <ProjectReference Include="..\..\src\PriceTracker.Scraper.Application\PriceTracker.Scraper.Application.csproj" />
   </ItemGroup>
 
 </Project>
