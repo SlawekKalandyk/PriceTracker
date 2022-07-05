@@ -8,5 +8,6 @@ namespace PriceTracker.Api.Application.Common.Interfaces
         DbSet<Product> Products { get; }
         DbSet<Price> Prices { get; }
         DbSet<Availability> Availabilities { get; }
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

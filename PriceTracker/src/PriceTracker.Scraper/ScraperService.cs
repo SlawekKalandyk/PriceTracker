@@ -4,6 +4,11 @@ namespace PriceTracker.Scraper
 {
     public class ScraperService : IHostedService, IDisposable
     {
+        public ScraperService()
+        {
+
+        }
+
         public Task StartAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

@@ -1,8 +1,9 @@
 ﻿using HtmlAgilityPack;
+using PriceTracker.Domain.Entities;
+using PriceTracker.Domain.Enums;
+using PriceTracker.Domain.ValueObjects;
 using PriceTracker.Scraper.Application.Common.Interfaces;
 using PriceTracker.Scraper.Application.Common.Interfaces.ShopScrapers;
-using PriceTracker.Domain.Entities;
-using PriceTracker.Domain.ValueObjects;
 using System.Xml.XPath;
 
 namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
@@ -25,7 +26,8 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
             return new GeneralProductInformation
             {
                 Name = productName,
-                Url = url
+                Url = url,
+                Shop = Shop.Morele
             };
         }
 
