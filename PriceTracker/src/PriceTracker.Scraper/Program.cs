@@ -14,7 +14,7 @@ namespace PriceTracker.Scraper
                 {
                     services.AddScraperApplicationServices();
                     services.AddScraperInfrastructureServices();
-                    services.AddSingleton<IHostedService, ScraperService>();
+                    services.AddHostedService<ScraperService>();
                 });
 
             await builder.RunConsoleAsync();

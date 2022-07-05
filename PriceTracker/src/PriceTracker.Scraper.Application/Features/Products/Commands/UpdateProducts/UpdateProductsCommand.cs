@@ -2,7 +2,6 @@
 using PriceTracker.Domain.Entities;
 using PriceTracker.Domain.Enums;
 using PriceTracker.Scraper.Application.Common.Interfaces;
-using PriceTracker.Scraper.Application.Common.Interfaces.ShopScrapers;
 using System.Threading.Tasks.Dataflow;
 
 namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProducts
@@ -20,15 +19,13 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
     public class UpdateProductsCommandHandler : IRequestHandler<UpdateProductsCommand, UpdateProductsCommandResponse>
     {
         private readonly IScraperApplicationDbContext _context;
-        private readonly IXKomScraper _xKomScraper;
-        private readonly IMoreleScraper _moreleScraper;
+        private readonly IEnumerable<IShopScraper> _scrapers;
         private const int MaxTasksAtOnce = 10;
 
-        public UpdateProductsCommandHandler(IScraperApplicationDbContext context, IXKomScraper xKomScraper, IMoreleScraper moreleScraper)
+        public UpdateProductsCommandHandler(IScraperApplicationDbContext context, IEnumerable<IShopScraper> scrapers)
         {
             _context = context;
-            _xKomScraper = xKomScraper;
-            _moreleScraper = moreleScraper;
+            _scrapers = scrapers;
         }
 
         public async Task<UpdateProductsCommandResponse> Handle(UpdateProductsCommand request, CancellationToken cancellationToken)
@@ -51,17 +48,14 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
 
         private async Task UpdateProduct(Product product, CancellationToken cancellationToken)
         {
-            switch (product.GeneralInformation.Shop)
-            {
-                case Shop.XKom:
-                    await _xKomScraper.Scrape(product.GeneralInformation.Url, product);
-                    break;
-                case Shop.Morele:
-                    await _moreleScraper.Scrape(product.GeneralInformation.Url, product);
-                    break;
-            }
-
+            var scraper = GetScraperForShop(_scrapers, product.GeneralInformation.Shop);
+            await scraper.Scrape(product.GeneralInformation.Url, product);
             await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        private IShopScraper GetScraperForShop(IEnumerable<IShopScraper> scrapers, Shop shop)
+        {
+            return scrapers.Single(scraper => scraper.Shop == shop);
         }
     }
 }

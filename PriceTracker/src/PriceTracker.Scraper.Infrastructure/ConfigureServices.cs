@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceTracker.Scraper.Application.Common.Interfaces;
-using PriceTracker.Scraper.Application.Common.Interfaces.ShopScrapers;
 using PriceTracker.Scraper.Infrastructure.Services;
 using PriceTracker.Scraper.Infrastructure.Services.ShopScrapers;
 
@@ -13,8 +12,8 @@ namespace PriceTracker.Scraper.Infrastructure
         {
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
-            services.AddScoped<IXKomScraper, XKomScraper>();
-            services.AddScoped<IMoreleScraper, MoreleScraper>();
+            services.AddScoped<IShopScraper, XKomScraper>();
+            services.AddScoped<IShopScraper, MoreleScraper>();
 
             services.AddSingleton<IWebsiteScraper, WebsiteScraper>();
 

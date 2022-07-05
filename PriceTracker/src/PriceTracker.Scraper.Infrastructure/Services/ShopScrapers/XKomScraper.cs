@@ -3,13 +3,12 @@ using PriceTracker.Domain.Entities;
 using PriceTracker.Domain.Enums;
 using PriceTracker.Domain.ValueObjects;
 using PriceTracker.Scraper.Application.Common.Interfaces;
-using PriceTracker.Scraper.Application.Common.Interfaces.ShopScrapers;
 using System.Text.RegularExpressions;
 using System.Xml.XPath;
 
 namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
 {
-    public class XKomScraper : BaseShopScraper, IXKomScraper
+    public class XKomScraper : BaseShopScraper
     {
         private readonly XPathExpression _addToCartXPathExpression = XPathExpression.Compile(@"//*[text()[contains(., 'Dodaj do koszyka')]]");
         private readonly XPathExpression _availabilityXPathExpression = XPathExpression.Compile(@"descendant-or-self::*[text()[contains(., 'Dostępny')]]");
@@ -21,6 +20,8 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
         {
         }
 
+        public override Shop Shop => Shop.XKom;
+
         protected override GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument)
         {
             var productNameNode = htmlDocument.DocumentNode.SelectSingleNode(_productNameXPathExpression);
@@ -29,7 +30,7 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
             {
                 Name = productName,
                 Url = url,
-                Shop = Shop.XKom
+                Shop = Shop
             };
         }
 

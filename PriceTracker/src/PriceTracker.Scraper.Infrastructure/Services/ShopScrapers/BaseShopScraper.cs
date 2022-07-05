@@ -1,7 +1,7 @@
 ﻿using HtmlAgilityPack;
 using PriceTracker.Scraper.Application.Common.Interfaces;
-using PriceTracker.Scraper.Application.Common.Interfaces.ShopScrapers;
 using PriceTracker.Domain.Entities;
+using PriceTracker.Domain.Enums;
 using PriceTracker.Domain.ValueObjects;
 
 namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
@@ -31,6 +31,8 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
             product.PriceHistory.Add(ScrapePrice(htmlDocument, timeStamp));
             return product;
         }
+
+        public abstract Shop Shop { get; }
 
         protected abstract GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument);
 

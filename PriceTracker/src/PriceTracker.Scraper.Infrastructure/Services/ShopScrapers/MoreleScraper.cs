@@ -3,12 +3,11 @@ using PriceTracker.Domain.Entities;
 using PriceTracker.Domain.Enums;
 using PriceTracker.Domain.ValueObjects;
 using PriceTracker.Scraper.Application.Common.Interfaces;
-using PriceTracker.Scraper.Application.Common.Interfaces.ShopScrapers;
 using System.Xml.XPath;
 
 namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
 {
-    public class MoreleScraper : BaseShopScraper, IMoreleScraper
+    public class MoreleScraper : BaseShopScraper
     {
         private readonly XPathExpression _productNameExpression = XPathExpression.Compile(@"//h1[@class='prod-name']");
         private readonly XPathExpression _currentPriceExpression = XPathExpression.Compile(@"//*[@id='product_price_brutto']");
@@ -19,6 +18,8 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
         {
         }
 
+        public override Shop Shop => Shop.Morele;
+
         protected override GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument)
         {
             var productNameNode = htmlDocument.DocumentNode.SelectSingleNode(_productNameExpression);
@@ -27,7 +28,7 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
             {
                 Name = productName,
                 Url = url,
-                Shop = Shop.Morele
+                Shop = Shop
             };
         }
 
