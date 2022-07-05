@@ -8,7 +8,7 @@ namespace PriceTracker.Scraper
 {
     public class ScraperService : BackgroundService
     {
-        private const int Interval = 60 * 60 * 1000;
+        private const int IntervalMinutes = 60;
 
         private readonly IServiceProvider _serviceProvider;
 
@@ -29,8 +29,9 @@ namespace PriceTracker.Scraper
                 {
                     Products = getTrackedProductsResponse.Products
                 };
-                await mediator.Send(updateProductsCommand, stoppingToken)
-                    .ContinueWith(async _ => await Task.Delay(Interval, stoppingToken), stoppingToken);
+                await mediator.Send(updateProductsCommand, stoppingToken);
+
+                await Task.Delay(TimeSpan.FromMinutes(IntervalMinutes), stoppingToken);
             }
         }
     }

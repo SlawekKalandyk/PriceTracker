@@ -27,8 +27,15 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
             {
                 GeneralInformation = ScrapeGeneralInformation(url, htmlDocument)
             };
-            product.AvailabilityHistory.Add(ScrapeAvailability(htmlDocument, timeStamp));
-            product.PriceHistory.Add(ScrapePrice(htmlDocument, timeStamp));
+
+            var availability = ScrapeAvailability(htmlDocument, timeStamp);
+            product.AvailabilityHistory.Add(availability);
+            if (availability.IsAvailable)
+            {
+                var price = ScrapePrice(htmlDocument, timeStamp);
+                product.PriceHistory.Add(price);
+            }
+
             return product;
         }
 

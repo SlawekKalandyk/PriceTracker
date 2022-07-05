@@ -7,7 +7,7 @@ namespace PriceTracker.Scraper.Application
 {
     public static class ConfigureServices
     {
-        public static IServiceCollection AddScraperApplicationServices(this IServiceCollection services, IConfiguration? configuration = null)
+        public static IServiceCollection AddScraperApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
 

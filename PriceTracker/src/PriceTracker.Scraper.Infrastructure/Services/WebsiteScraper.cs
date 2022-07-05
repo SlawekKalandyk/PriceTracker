@@ -11,6 +11,7 @@ namespace PriceTracker.Scraper.Infrastructure.Services
         public WebsiteScraper()
         {
             ClearOldChromiumDownloads();
+            DownloadChromiumIfNotExists(BrowserFetcher.DefaultChromiumRevision);
             _browser = Puppeteer.LaunchAsync(DefaultLaunchOptions).Result;
         }
 
@@ -42,6 +43,14 @@ namespace PriceTracker.Scraper.Infrastructure.Services
             foreach (var revision in oldRevisions)
             {
                 _chromiumBrowserFetcher.Remove(revision);
+            }
+        }
+
+        private void DownloadChromiumIfNotExists(string revision)
+        {
+            if (!File.Exists(_chromiumBrowserFetcher.GetExecutablePath(revision)))
+            {
+                _chromiumBrowserFetcher.DownloadAsync(revision).Wait();
             }
         }
 

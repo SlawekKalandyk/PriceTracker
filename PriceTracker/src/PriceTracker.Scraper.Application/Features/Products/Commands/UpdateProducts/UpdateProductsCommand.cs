@@ -50,6 +50,7 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
         {
             var scraper = GetScraperForShop(_scrapers, product.GeneralInformation.Shop);
             await scraper.Scrape(product.GeneralInformation.Url, product);
+
             await _context.SaveChangesAsync(cancellationToken);
         }
 
