@@ -31,7 +31,7 @@ namespace PriceTracker.Scraper
                     services.AddSharedInfrastructureServices(hostContext.Configuration);
                     services.AddScraperApplicationServices(hostContext.Configuration);
                     services.AddScraperInfrastructureServices(hostContext.Configuration);
-                    services.AddHostedService<ScraperService>();
+                    services.AddHostedService<ScraperHostedService>();
                 }).Build();
 
 

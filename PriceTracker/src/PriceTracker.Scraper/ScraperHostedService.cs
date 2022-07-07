@@ -6,13 +6,13 @@ using PriceTracker.Scraper.Application.Features.Products.Queries.GetTrackedProdu
 
 namespace PriceTracker.Scraper
 {
-    public class ScraperService : BackgroundService
+    public class ScraperHostedService : BackgroundService
     {
         private const int IntervalMinutes = 60;
 
         private readonly IServiceProvider _serviceProvider;
 
-        public ScraperService(IServiceProvider serviceProvider)
+        public ScraperHostedService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
