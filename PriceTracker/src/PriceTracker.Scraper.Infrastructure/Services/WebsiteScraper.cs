@@ -3,7 +3,7 @@ using PuppeteerSharp;
 
 namespace PriceTracker.Scraper.Infrastructure.Services
 {
-    public class WebsiteScraper : IWebsiteScraper, IDisposable
+    public class WebsiteScraper : IWebsiteScraper, IAsyncDisposable
     {
         private readonly Browser _browser;
         private readonly BrowserFetcher _chromiumBrowserFetcher = new(Product.Chrome);
@@ -54,10 +54,10 @@ namespace PriceTracker.Scraper.Infrastructure.Services
             }
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            _browser.Disconnect();
-            _browser.Dispose();
+            await _browser.CloseAsync();
+            await _browser.DisposeAsync();
         }
     }
 }
