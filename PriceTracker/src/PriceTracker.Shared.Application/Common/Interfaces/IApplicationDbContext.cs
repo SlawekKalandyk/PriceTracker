@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PriceTracker.Domain.Entities;
 
-namespace PriceTracker.Scraper.Application.Common.Interfaces
+namespace PriceTracker.Shared.Application.Common.Interfaces
 {
-    public interface IScraperApplicationDbContext
+    public interface IApplicationDbContext
     {
         DbSet<Product> Products { get; }
         DbSet<Price> Prices { get; }

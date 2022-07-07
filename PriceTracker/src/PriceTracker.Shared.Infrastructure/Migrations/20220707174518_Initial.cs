@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PriceTracker.Scraper.Infrastructure.Migrations
+namespace PriceTracker.Shared.Infrastructure.Migrations
 {
     public partial class Initial : Migration
     {

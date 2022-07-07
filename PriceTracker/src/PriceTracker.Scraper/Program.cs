@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceTracker.Scraper.Application;
 using PriceTracker.Scraper.Infrastructure;
+using PriceTracker.Shared.Application;
+using PriceTracker.Shared.Infrastructure;
 
 namespace PriceTracker.Scraper
 {
@@ -25,6 +27,8 @@ namespace PriceTracker.Scraper
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddSharedApplicationServices(hostContext.Configuration);
+                    services.AddSharedInfrastructureServices(hostContext.Configuration);
                     services.AddScraperApplicationServices(hostContext.Configuration);
                     services.AddScraperInfrastructureServices(hostContext.Configuration);
                     services.AddHostedService<ScraperService>();

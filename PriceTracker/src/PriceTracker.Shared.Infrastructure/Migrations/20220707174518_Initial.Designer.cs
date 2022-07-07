@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PriceTracker.Scraper.Infrastructure.Persistence;
+using PriceTracker.Shared.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace PriceTracker.Scraper.Infrastructure.Migrations
+namespace PriceTracker.Shared.Infrastructure.Migrations
 {
-    [DbContext(typeof(ScraperApplicationDbContext))]
-    [Migration("20220705154758_Initial")]
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20220707174518_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

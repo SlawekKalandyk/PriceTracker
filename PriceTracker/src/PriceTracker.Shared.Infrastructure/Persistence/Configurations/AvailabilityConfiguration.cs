@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PriceTracker.Domain.Entities;
 
-namespace PriceTracker.Scraper.Infrastructure.Persistence.Configurations
+namespace PriceTracker.Shared.Infrastructure.Persistence.Configurations
 {
     public class AvailabilityConfiguration : IEntityTypeConfiguration<Availability>
     {

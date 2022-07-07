@@ -3,14 +3,14 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PriceTracker.Scraper.Infrastructure.Persistence;
+using PriceTracker.Shared.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace PriceTracker.Scraper.Infrastructure.Migrations
+namespace PriceTracker.Shared.Infrastructure.Migrations
 {
-    [DbContext(typeof(ScraperApplicationDbContext))]
-    partial class ScraperApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContext))]
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

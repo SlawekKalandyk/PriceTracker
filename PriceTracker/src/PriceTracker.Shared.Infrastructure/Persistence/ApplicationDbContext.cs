@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PriceTracker.Api.Application.Common.Interfaces;
 using PriceTracker.Domain.Entities;
+using PriceTracker.Shared.Application.Common.Interfaces;
 using System.Reflection;
 
-namespace PriceTracker.Api.Infrastructure.Persistence
+namespace PriceTracker.Shared.Infrastructure.Persistence
 {
-    public class ApiApplicationDbContext : DbContext, IApiApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        public ApiApplicationDbContext(
-            DbContextOptions<ApiApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(
+            DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }

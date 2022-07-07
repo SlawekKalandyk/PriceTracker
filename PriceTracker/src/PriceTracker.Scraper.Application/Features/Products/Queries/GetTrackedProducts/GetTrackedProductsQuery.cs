@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Scraper.Application.Common.Interfaces;
+using PriceTracker.Shared.Application.Common.Interfaces;
 
 namespace PriceTracker.Scraper.Application.Features.Products.Queries.GetTrackedProducts
 {
@@ -15,9 +15,9 @@ namespace PriceTracker.Scraper.Application.Features.Products.Queries.GetTrackedP
 
     public class GetTrackedProductsQueryHandler : IRequestHandler<GetTrackedProductsQuery, GetTrackedProductsQueryResponse>
     {
-        private readonly IScraperApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public GetTrackedProductsQueryHandler(IScraperApplicationDbContext context)
+        public GetTrackedProductsQueryHandler(IApplicationDbContext context)
         {
             _context = context;
         }

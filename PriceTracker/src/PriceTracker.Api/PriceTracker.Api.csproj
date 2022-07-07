@@ -9,12 +9,18 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PriceTracker.Api.Application\PriceTracker.Api.Application.csproj" />
     <ProjectReference Include="..\PriceTracker.Api.Infrastructure\PriceTracker.Api.Infrastructure.csproj" />
+    <ProjectReference Include="..\PriceTracker.Shared.Application\PriceTracker.Shared.Application.csproj" />
+    <ProjectReference Include="..\PriceTracker.Shared.Infrastructure\PriceTracker.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

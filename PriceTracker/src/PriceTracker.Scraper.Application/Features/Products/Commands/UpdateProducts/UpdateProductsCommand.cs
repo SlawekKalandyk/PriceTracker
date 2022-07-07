@@ -3,6 +3,7 @@ using PriceTracker.Domain.Entities;
 using PriceTracker.Domain.Enums;
 using PriceTracker.Scraper.Application.Common.Interfaces;
 using System.Threading.Tasks.Dataflow;
+using PriceTracker.Shared.Application.Common.Interfaces;
 
 namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProducts
 {
@@ -18,11 +19,11 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
 
     public class UpdateProductsCommandHandler : IRequestHandler<UpdateProductsCommand, UpdateProductsCommandResponse>
     {
-        private readonly IScraperApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IEnumerable<IShopScraper> _scrapers;
         private const int MaxTasksAtOnce = 10;
 
-        public UpdateProductsCommandHandler(IScraperApplicationDbContext context, IEnumerable<IShopScraper> scrapers)
+        public UpdateProductsCommandHandler(IApplicationDbContext context, IEnumerable<IShopScraper> scrapers)
         {
             _context = context;
             _scrapers = scrapers;

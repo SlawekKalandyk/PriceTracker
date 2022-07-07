@@ -1,11 +1,14 @@
 using PriceTracker.Api;
 using PriceTracker.Api.Application;
 using PriceTracker.Api.Infrastructure;
+using PriceTracker.Shared.Application;
+using PriceTracker.Shared.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSharedApplicationServices(builder.Configuration);
+builder.Services.AddSharedInfrastructureServices(builder.Configuration);
 builder.Services.AddApiApplicationServices(builder.Configuration);
 builder.Services.AddApiInfrastructureServices(builder.Configuration);
 
