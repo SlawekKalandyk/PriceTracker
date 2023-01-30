@@ -73,9 +73,44 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     b.Property<bool>("IsTracked")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ShopId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ShopId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("PriceTracker.Domain.Entities.Shop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DomainUrls")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Availability", b =>
@@ -94,32 +129,13 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Product", b =>
                 {
-                    b.OwnsOne("PriceTracker.Domain.ValueObjects.GeneralProductInformation", "GeneralInformation", b1 =>
-                        {
-                            b1.Property<int>("ProductId")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasColumnType("TEXT");
-
-                            b1.Property<int>("Shop")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<string>("Url")
-                                .IsRequired()
-                                .HasColumnType("TEXT");
-
-                            b1.HasKey("ProductId");
-
-                            b1.ToTable("Products");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ProductId");
-                        });
-
-                    b.Navigation("GeneralInformation")
+                    b.HasOne("PriceTracker.Domain.Entities.Shop", "Shop")
+                        .WithMany("Products")
+                        .HasForeignKey("ShopId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Shop");
                 });
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Product", b =>
@@ -127,6 +143,11 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     b.Navigation("AvailabilityHistory");
 
                     b.Navigation("PriceHistory");
+                });
+
+            modelBuilder.Entity("PriceTracker.Domain.Entities.Shop", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

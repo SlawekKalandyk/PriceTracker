@@ -1,12 +1,11 @@
 ﻿using HtmlAgilityPack;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Domain.Enums;
-using PriceTracker.Domain.ValueObjects;
-using PriceTracker.Scraper.Application.Common.Interfaces;
+using PriceTracker.Plugins.Shared;
+using PriceTracker.Shared.Application.Common.Interfaces;
 using System.Text.RegularExpressions;
 using System.Xml.XPath;
 
-namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
+namespace PriceTracker.Plugins.XKom
 {
     public class XKomScraper : BaseShopScraper
     {
@@ -20,17 +19,20 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
         {
         }
 
-        public override Shop Shop => Shop.XKom;
+        public override Shop Shop => new()
+        {
+            Name = "X-Kom",
+            DomainUrls = new[] { "https://www.x-kom.pl/" }
+        };
 
-        protected override GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument)
+        protected override Product ScrapeProductInformation(string url, HtmlDocument htmlDocument)
         {
             var productNameNode = htmlDocument.DocumentNode.SelectSingleNode(_productNameXPathExpression);
             var productName = productNameNode == null ? "" : productNameNode.InnerText;
-            return new GeneralProductInformation
+            return new Product
             {
                 Name = productName,
-                Url = url,
-                Shop = Shop
+                Url = url
             };
         }
 

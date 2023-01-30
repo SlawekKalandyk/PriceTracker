@@ -1,7 +1,6 @@
 ﻿using PriceTracker.Domain.Entities;
-using PriceTracker.Domain.Enums;
 
-namespace PriceTracker.Scraper.Application.Common.Interfaces
+namespace PriceTracker.Plugins.Shared
 {
     public interface IShopScraper
     {

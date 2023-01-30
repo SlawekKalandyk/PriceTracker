@@ -1,7 +1,6 @@
-﻿using PriceTracker.Scraper.Application.Common.Interfaces;
-using PuppeteerSharp;
+﻿using PuppeteerSharp;
 
-namespace PriceTracker.Scraper.Infrastructure.Services
+namespace PriceTracker.Plugins.Shared
 {
     public class WebsiteScraper : IWebsiteScraper, IAsyncDisposable
     {

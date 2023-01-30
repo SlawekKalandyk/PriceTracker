@@ -24,7 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PriceTracker.Plugins.XKom\PriceTracker.Plugins.XKom.csproj" />
     <ProjectReference Include="..\..\src\PriceTracker.Scraper.Application\PriceTracker.Scraper.Application.csproj" />
+    <ProjectReference Include="..\..\src\PriceTracker.Scraper.Infrastructure\PriceTracker.Scraper.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

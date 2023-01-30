@@ -22,7 +22,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PriceTracker.Domain\PriceTracker.Domain.csproj" />
+    <ProjectReference Include="..\PriceTracker.Plugins.Shared\PriceTracker.Plugins.Shared.csproj" />
     <ProjectReference Include="..\PriceTracker.Shared.Application\PriceTracker.Shared.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Interfaces\" />
   </ItemGroup>
 
 </Project>

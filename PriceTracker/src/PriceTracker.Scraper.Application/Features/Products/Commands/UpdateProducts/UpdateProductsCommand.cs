@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Domain.Enums;
-using PriceTracker.Scraper.Application.Common.Interfaces;
-using System.Threading.Tasks.Dataflow;
 using PriceTracker.Shared.Application.Common.Interfaces;
+using System.Threading.Tasks.Dataflow;
+using PriceTracker.Plugins.Shared;
 
 namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProducts
 {
@@ -21,7 +20,7 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
     {
         private readonly IApplicationDbContext _context;
         private readonly IEnumerable<IShopScraper> _scrapers;
-        private const int MaxTasksAtOnce = 10;
+        private const int MaxTasksAtOnce = 1;
 
         public UpdateProductsCommandHandler(IApplicationDbContext context, IEnumerable<IShopScraper> scrapers)
         {
@@ -31,26 +30,35 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
 
         public async Task<UpdateProductsCommandResponse> Handle(UpdateProductsCommand request, CancellationToken cancellationToken)
         {
-            var block = new ActionBlock<Product>(async (product) =>
+            var blocks = new Dictionary<Shop, ActionBlock<Product>>();
+
+            foreach (var scraper in _scrapers)
             {
-                await UpdateProduct(product, cancellationToken);
-            }, new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = MaxTasksAtOnce });
+                blocks[scraper.Shop] = new ActionBlock<Product>(async (product) =>
+                {
+                    await UpdateProduct(product, cancellationToken);
+                }, new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = MaxTasksAtOnce });
+            }
 
             foreach (var product in request.Products)
             {
-                block.Post(product);
+                blocks[product.Shop].Post(product);
             }
 
-            block.Complete();
-            await block.Completion;
+            foreach (var block in blocks.Values)
+            {
+                block.Complete();
+            }
+
+            await Task.WhenAll(blocks.Values.Select(block => block.Completion));
 
             return new UpdateProductsCommandResponse();
         }
 
         private async Task UpdateProduct(Product product, CancellationToken cancellationToken)
         {
-            var scraper = GetScraperForShop(_scrapers, product.GeneralInformation.Shop);
-            await scraper.Scrape(product.GeneralInformation.Url, product);
+            var scraper = GetScraperForShop(_scrapers, product.Shop);
+            await scraper.Scrape(product.Url, product);
 
             await _context.SaveChangesAsync(cancellationToken);
         }

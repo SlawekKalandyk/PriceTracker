@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="Features\" />
+    <Folder Include="Features\Products\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PriceTracker.Domain\PriceTracker.Domain.csproj" />
+    <ProjectReference Include="..\PriceTracker.Shared.Application\PriceTracker.Shared.Application.csproj" />
   </ItemGroup>
 
 </Project>

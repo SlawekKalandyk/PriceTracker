@@ -27,9 +27,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Scraper.Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Scraper", "src\PriceTracker.Scraper\PriceTracker.Scraper.csproj", "{0F372096-4630-4B25-9A39-E9299D266C12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.Shared.Infrastructure", "src\PriceTracker.Shared.Infrastructure\PriceTracker.Shared.Infrastructure.csproj", "{BB0F21F1-B2C3-4AD3-B628-74BA2C707F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Shared.Infrastructure", "src\PriceTracker.Shared.Infrastructure\PriceTracker.Shared.Infrastructure.csproj", "{BB0F21F1-B2C3-4AD3-B628-74BA2C707F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.Shared.Application", "src\PriceTracker.Shared.Application\PriceTracker.Shared.Application.csproj", "{86FA2D6C-5EC9-470E-8F93-BDF9DE339DEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Shared.Application", "src\PriceTracker.Shared.Application\PriceTracker.Shared.Application.csproj", "{86FA2D6C-5EC9-470E-8F93-BDF9DE339DEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "plugins", "plugins", "{3724B7F6-5953-4010-A0A6-3E636C70CFCF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Plugins.Shared", "src\PriceTracker.Plugins.Shared\PriceTracker.Plugins.Shared.csproj", "{283D5DF9-40E4-415D-99FD-5E2D15948E39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Plugins.XKom", "PriceTracker.Plugins.XKom\PriceTracker.Plugins.XKom.csproj", "{930DEFB2-0F11-44EA-844C-61345F746DF3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Plugins.Morele", "PriceTracker.Plugins.Morele\PriceTracker.Plugins.Morele.csproj", "{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.Plugins", "Pricetracker.Plugins\PriceTracker.Plugins.csproj", "{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +123,38 @@ Global
 		{86FA2D6C-5EC9-470E-8F93-BDF9DE339DEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86FA2D6C-5EC9-470E-8F93-BDF9DE339DEC}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
 		{86FA2D6C-5EC9-470E-8F93-BDF9DE339DEC}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{930DEFB2-0F11-44EA-844C-61345F746DF3}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +172,11 @@ Global
 		{0F372096-4630-4B25-9A39-E9299D266C12} = {2E92112B-DA4F-4459-9793-509447DF28A0}
 		{BB0F21F1-B2C3-4AD3-B628-74BA2C707F7F} = {B614784C-7C25-4751-9695-77205C0C58DD}
 		{86FA2D6C-5EC9-470E-8F93-BDF9DE339DEC} = {B614784C-7C25-4751-9695-77205C0C58DD}
+		{3724B7F6-5953-4010-A0A6-3E636C70CFCF} = {B614784C-7C25-4751-9695-77205C0C58DD}
+		{283D5DF9-40E4-415D-99FD-5E2D15948E39} = {3724B7F6-5953-4010-A0A6-3E636C70CFCF}
+		{930DEFB2-0F11-44EA-844C-61345F746DF3} = {3724B7F6-5953-4010-A0A6-3E636C70CFCF}
+		{8A1283D4-59F5-41D8-9086-9DC2A829A4BA} = {3724B7F6-5953-4010-A0A6-3E636C70CFCF}
+		{4E02EDBB-FC98-42E2-B4AE-74EAB2A9FB0F} = {3724B7F6-5953-4010-A0A6-3E636C70CFCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F072A7C6-029E-4198-9640-B061B52E2EE6}

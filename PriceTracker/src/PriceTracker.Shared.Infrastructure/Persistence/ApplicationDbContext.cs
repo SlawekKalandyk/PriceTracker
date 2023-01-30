@@ -19,6 +19,8 @@ namespace PriceTracker.Shared.Infrastructure.Persistence
 
         public DbSet<Availability> Availabilities => Set<Availability>();
 
+        public DbSet<Shop> Shops => Set<Shop>();
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

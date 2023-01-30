@@ -1,6 +1,6 @@
-﻿using PriceTracker.Scraper.Application.Common.Interfaces;
+﻿using PriceTracker.Shared.Application.Common.Interfaces;
 
-namespace PriceTracker.Scraper.Infrastructure.Services
+namespace PriceTracker.Shared.Infrastructure.Services
 {
     public class DateTimeProvider : IDateTimeProvider
     {
@@ -10,8 +10,7 @@ namespace PriceTracker.Scraper.Infrastructure.Services
         {
             get
             {
-                if (!now.HasValue)
-                    now = DateTime.UtcNow;
+                now ??= DateTime.UtcNow;
 
                 return now.Value;
             }

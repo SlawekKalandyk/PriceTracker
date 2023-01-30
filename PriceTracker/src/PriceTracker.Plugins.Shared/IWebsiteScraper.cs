@@ -1,4 +1,4 @@
-﻿namespace PriceTracker.Scraper.Application.Common.Interfaces
+﻿namespace PriceTracker.Plugins.Shared
 {
     public interface IWebsiteScraper
     { 

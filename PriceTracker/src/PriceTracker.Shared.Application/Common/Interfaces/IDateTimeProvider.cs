@@ -1,4 +1,4 @@
-﻿namespace PriceTracker.Scraper.Application.Common.Interfaces
+﻿namespace PriceTracker.Shared.Application.Common.Interfaces
 {
     public interface IDateTimeProvider
     {

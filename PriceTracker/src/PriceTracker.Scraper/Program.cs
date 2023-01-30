@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PriceTracker.Plugins;
 using PriceTracker.Scraper.Application;
 using PriceTracker.Scraper.Infrastructure;
 using PriceTracker.Shared.Application;
@@ -16,24 +17,21 @@ namespace PriceTracker.Scraper
                 .ConfigureAppConfiguration((hostingContext, configuration) =>
                 {
                     configuration.Sources.Clear();
-
-                    IHostEnvironment env = hostingContext.HostingEnvironment;
-
                     configuration
                         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true, true);
+                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true);
 
                     configuration.Build();
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSharedApplicationServices(hostContext.Configuration);
-                    services.AddSharedInfrastructureServices(hostContext.Configuration);
-                    services.AddScraperApplicationServices(hostContext.Configuration);
-                    services.AddScraperInfrastructureServices(hostContext.Configuration);
-                    services.AddHostedService<ScraperHostedService>();
+                    services.AddSharedApplicationServices(hostContext.Configuration)
+                        .AddSharedInfrastructureServices(hostContext.Configuration)
+                        .AddScraperApplicationServices(hostContext.Configuration)
+                        .AddScraperInfrastructureServices(hostContext.Configuration)
+                        .AddPluginShopServices(hostContext.Configuration)
+                        .AddHostedService<ScraperHostedService>();
                 }).Build();
-
 
             await host.RunAsync();
         }

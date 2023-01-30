@@ -8,7 +8,11 @@ namespace PriceTracker.Shared.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.OwnsOne(p => p.GeneralInformation);
+            builder.Property(product => product.Name)
+                .IsRequired();
+
+            builder.Property(product => product.Url)
+                .IsRequired();
         }
     }
 }

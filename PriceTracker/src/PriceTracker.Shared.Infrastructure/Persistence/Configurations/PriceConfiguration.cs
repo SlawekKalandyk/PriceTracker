@@ -8,7 +8,11 @@ namespace PriceTracker.Shared.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Price> builder)
         {
+            builder.Property(price => price.CurrentPrice)
+                .IsRequired();
 
+            builder.Property(price => price.TimeStamp)
+                .IsRequired();
         }
     }
 }

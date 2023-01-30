@@ -1,11 +1,10 @@
 ﻿using HtmlAgilityPack;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Domain.Enums;
-using PriceTracker.Domain.ValueObjects;
-using PriceTracker.Scraper.Application.Common.Interfaces;
+using PriceTracker.Plugins.Shared;
+using PriceTracker.Shared.Application.Common.Interfaces;
 using System.Xml.XPath;
 
-namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
+namespace PriceTracker.Plugins.Morele
 {
     public class MoreleScraper : BaseShopScraper
     {
@@ -18,17 +17,20 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
         {
         }
 
-        public override Shop Shop => Shop.Morele;
+        public override Shop Shop => new()
+        {
+            Name = "Morele",
+            DomainUrls = new[] { "https://www.morele.net/" }
+        };
 
-        protected override GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument)
+        protected override Product ScrapeProductInformation(string url, HtmlDocument htmlDocument)
         {
             var productNameNode = htmlDocument.DocumentNode.SelectSingleNode(_productNameExpression);
             var productName = productNameNode == null ? "" : productNameNode.InnerText;
-            return new GeneralProductInformation
+            return new Product
             {
                 Name = productName,
-                Url = url,
-                Shop = Shop
+                Url = url
             };
         }
 

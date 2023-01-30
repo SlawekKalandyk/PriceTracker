@@ -1,10 +1,8 @@
 ﻿using HtmlAgilityPack;
-using PriceTracker.Scraper.Application.Common.Interfaces;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Domain.Enums;
-using PriceTracker.Domain.ValueObjects;
+using PriceTracker.Shared.Application.Common.Interfaces;
 
-namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
+namespace PriceTracker.Plugins.Shared
 {
     public abstract class BaseShopScraper : IShopScraper
     {
@@ -23,10 +21,8 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
             var html = await _websiteScraper.ScrapeDynamicWebsite(url);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
-            product ??= new Product
-            {
-                GeneralInformation = ScrapeGeneralInformation(url, htmlDocument)
-            };
+            product ??= ScrapeProductInformation(url, htmlDocument);
+            product.Shop ??= Shop;
 
             var availability = ScrapeAvailability(htmlDocument, timeStamp);
             product.AvailabilityHistory.Add(availability);
@@ -41,7 +37,7 @@ namespace PriceTracker.Scraper.Infrastructure.Services.ShopScrapers
 
         public abstract Shop Shop { get; }
 
-        protected abstract GeneralProductInformation ScrapeGeneralInformation(string url, HtmlDocument htmlDocument);
+        protected abstract Product ScrapeProductInformation(string url, HtmlDocument htmlDocument);
 
         protected abstract Price ScrapePrice(HtmlDocument htmlDocument, DateTime timeStamp);
 
