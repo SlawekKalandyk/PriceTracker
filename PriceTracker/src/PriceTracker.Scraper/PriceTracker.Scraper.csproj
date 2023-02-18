@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Pricetracker.Plugins\PriceTracker.Plugins.csproj" />
+    <ProjectReference Include="..\..\src\Pricetracker.Plugins\PriceTracker.Plugins.csproj" />
     <ProjectReference Include="..\PriceTracker.Scraper.Application\PriceTracker.Scraper.Application.csproj" />
     <ProjectReference Include="..\PriceTracker.Scraper.Infrastructure\PriceTracker.Scraper.Infrastructure.csproj" />
   </ItemGroup>

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\PriceTracker.Plugins.Shared\PriceTracker.Plugins.Shared.csproj" />
+    <ProjectReference Include="..\..\src\PriceTracker.Plugins.Shared\PriceTracker.Plugins.Shared.csproj" />
   </ItemGroup>
 
 </Project>
