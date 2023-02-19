@@ -4,9 +4,8 @@ using PriceTracker.Shared.Application.Common.Interfaces;
 
 namespace PriceTracker.Api.Application.Features.Commands
 {
-    public record RemoveProductCommand : IRequest<RemoveProductCommandResponse>
+    public record RemoveProductCommand(Product Product) : IRequest<RemoveProductCommandResponse>
     {
-        public Product Product { get; set; }
     }
 
     public record RemoveProductCommandResponse

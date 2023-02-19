@@ -1,15 +1,15 @@
 ﻿using MediatR;
+using PriceTracker.Domain.Entities;
 using PriceTracker.Plugins.Shared;
 using PriceTracker.Shared.Application.Common.Interfaces;
 
 namespace PriceTracker.Api.Application.Features.Commands
 {
-    public record AddProductCommand : IRequest<AddProductCommandResponse>
+    public record AddProductCommand(string Url) : IRequest<AddProductCommandResponse>
     {
-        public string Url { get; set; }
     }
 
-    public record AddProductCommandResponse
+    public record AddProductCommandResponse(Product? Product)
     {
     }
 
@@ -29,19 +29,20 @@ namespace PriceTracker.Api.Application.Features.Commands
             var uri = new Uri(request.Url);
             var domain = uri.Host;
             var shop = _context.Shops.ToList().SingleOrDefault(s => s.DomainUrls.Contains(domain));
+            Product? newProduct = null;
             if (shop != null)
             {
                 var scraper = _scrapers.SingleOrDefault(s => s.ShopData.Name == shop.Name);
                 if (scraper != null)
                 {
-                    var product = await scraper.Scrape(request.Url);
-                    product.Shop = shop;
-                    await _context.Products.AddAsync(product, cancellationToken);
+                    newProduct = await scraper.Scrape(request.Url);
+                    newProduct.Shop = shop;
+                    newProduct = _context.Products.Add(newProduct).Entity;
                     await _context.SaveChangesAsync(cancellationToken);
                 }
             }
 
-            return new AddProductCommandResponse();
+            return new AddProductCommandResponse(newProduct);
         }
     }
 }

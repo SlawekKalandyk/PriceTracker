@@ -9,9 +9,8 @@ namespace PriceTracker.Shared.Application.Features.Queries
     {
     }
 
-    public record GetTrackedProductsQueryResponse
+    public record GetTrackedProductsQueryResponse(IQueryable<Product> Products)
     {
-        public IQueryable<Product> Products { get; init; }
     }
 
     public class GetTrackedProductsQueryHandler : IRequestHandler<GetTrackedProductsQuery, GetTrackedProductsQueryResponse>
@@ -29,10 +28,7 @@ namespace PriceTracker.Shared.Application.Features.Queries
                 .Include(p => p.Shop)
                 .Include(p => p.PriceHistory)
                 .Include(p => p.AvailabilityHistory);
-            var response = new GetTrackedProductsQueryResponse()
-            {
-                Products = products
-            };
+            var response = new GetTrackedProductsQueryResponse(products);
             return Task.FromResult(response);
         }
     }

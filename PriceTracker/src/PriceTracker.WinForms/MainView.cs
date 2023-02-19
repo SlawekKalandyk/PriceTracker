@@ -40,15 +40,10 @@ namespace PriceTracker.WinForms
             AddProductProgressLabel.Visible = true;
             AddProductButton.Enabled = false;
             AddProductTextBox.ReadOnly = true;
-            await _mediator.Send(new AddProductCommand
+            var addProductResponse = await _mediator.Send(new AddProductCommand(AddProductTextBox.Text));
+            if (addProductResponse.Product != null)
             {
-                Url = AddProductTextBox.Text
-            });
-            var trackedProducts = await _mediator.Send(new GetTrackedProductsQuery());
-            var newProduct = trackedProducts.Products.SingleOrDefault(p => p.Url == AddProductTextBox.Text);
-            if (newProduct != null)
-            {
-                AddProduct(newProduct);
+                AddProduct(addProductResponse.Product);
             }
 
             AddProductProgressLabel.Visible = false;
@@ -98,10 +93,7 @@ namespace PriceTracker.WinForms
                 var product = trackedProducts.Products.SingleOrDefault(p => p.Id == (int)row.Tag);
                 if (product != null)
                 {
-                    await _mediator.Send(new RemoveProductCommand
-                    {
-                        Product = product
-                    }).ContinueWith(_ =>
+                    await _mediator.Send(new RemoveProductCommand(product)).ContinueWith(_ =>
                     {
                         ProductsDataGridView.Invoke(() =>
                         {
