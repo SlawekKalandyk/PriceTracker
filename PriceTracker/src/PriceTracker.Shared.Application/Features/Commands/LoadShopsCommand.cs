@@ -3,7 +3,7 @@ using PriceTracker.Domain.Entities;
 using PriceTracker.Plugins.Shared;
 using PriceTracker.Shared.Application.Common.Interfaces;
 
-namespace PriceTracker.Scraper.Application.Features.Commands
+namespace PriceTracker.Shared.Application.Features.Commands
 {
     public record LoadShopsCommand : IRequest<LoadShopsCommandResponse>
     {

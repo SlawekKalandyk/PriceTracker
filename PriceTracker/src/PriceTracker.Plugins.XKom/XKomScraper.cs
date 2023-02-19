@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using PriceTracker.Domain.Entities;
 using PriceTracker.Plugins.Shared;
-using PriceTracker.Shared.Application.Common.Interfaces;
 using System.Text.RegularExpressions;
 using System.Xml.XPath;
 
@@ -15,7 +14,7 @@ namespace PriceTracker.Plugins.XKom
         private readonly XPathExpression _productNameXPathExpression = XPathExpression.Compile(@"//*[self::h1]");
         private readonly Regex _priceRegex = new(@"(\d+\s*,*\d*)");
 
-        public XKomScraper(IWebsiteScraper websiteScraper, IDateTimeProvider dateTimeProvider) : base(websiteScraper, dateTimeProvider)
+        public XKomScraper(IWebsiteScraper websiteScraper) : base(websiteScraper)
         {
         }
 

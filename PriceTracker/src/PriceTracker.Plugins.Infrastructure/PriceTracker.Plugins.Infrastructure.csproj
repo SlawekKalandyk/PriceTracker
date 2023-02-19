@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
-    <PackageReference Include="PuppeteerSharp" Version="9.0.2" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PriceTracker.Domain\PriceTracker.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

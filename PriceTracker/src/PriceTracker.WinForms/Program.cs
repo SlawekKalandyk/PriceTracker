@@ -5,7 +5,10 @@ using PriceTracker.Api.Application;
 using PriceTracker.Api.Infrastructure;
 using PriceTracker.Plugins;
 using PriceTracker.Shared.Application;
+using PriceTracker.Shared.Application.Features.Commands;
 using PriceTracker.Shared.Infrastructure;
+using System.Threading;
+using MediatR;
 
 namespace PriceTracker.WinForms
 {
@@ -22,6 +25,8 @@ namespace PriceTracker.WinForms
             ApplicationConfiguration.Initialize();
 
             var host = CreateHost();
+            LoadShops(host);
+            
             var mainView = host.Services.GetRequiredService<MainView>();
             Application.Run(mainView);
         }
@@ -47,6 +52,12 @@ namespace PriceTracker.WinForms
                         .AddPluginShopServices(hostContext.Configuration)
                         .AddInterfaceServices(hostContext.Configuration);
                 }).Build();
+        }
+
+        private static void LoadShops(IHost host)
+        {
+            var mediator = host.Services.GetRequiredService<IMediator>();
+            mediator.Send(new LoadShopsCommand()).Wait();
         }
     }
 }

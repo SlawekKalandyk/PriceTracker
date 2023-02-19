@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using PriceTracker.Domain.Entities;
 using PriceTracker.Plugins.Shared;
-using PriceTracker.Shared.Application.Common.Interfaces;
 using System.Xml.XPath;
 
 namespace PriceTracker.Plugins.Morele
@@ -13,7 +12,7 @@ namespace PriceTracker.Plugins.Morele
         private readonly XPathExpression _originalPriceExpression = XPathExpression.Compile(@"//*[@class='product-price-old']");
         private readonly XPathExpression _availabilityExpression = XPathExpression.Compile(@"//*[text()[contains(., 'PRODUKT NIEDOSTĘPNY')]]");
 
-        public MoreleScraper(IWebsiteScraper websiteScraper, IDateTimeProvider dateTimeProvider) : base(websiteScraper, dateTimeProvider)
+        public MoreleScraper(IWebsiteScraper websiteScraper) : base(websiteScraper)
         {
         }
 

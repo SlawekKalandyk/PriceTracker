@@ -1,18 +1,15 @@
 ﻿using HtmlAgilityPack;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Shared.Application.Common.Interfaces;
 
 namespace PriceTracker.Plugins.Shared
 {
     public abstract class BaseShopScraper : IShopScraper
     {
-        private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IWebsiteScraper _websiteScraper;
 
-        protected BaseShopScraper(IWebsiteScraper websiteScraper, IDateTimeProvider dateTimeProvider)
+        protected BaseShopScraper(IWebsiteScraper websiteScraper)
         {
             _websiteScraper = websiteScraper;
-            _dateTimeProvider = dateTimeProvider;
         }
 
         public virtual async Task<Product> Scrape(string url)
@@ -27,7 +24,7 @@ namespace PriceTracker.Plugins.Shared
 
         private async Task<Product> ScrapeCore(string url, Product? product = null)
         {
-            var timeStamp = _dateTimeProvider.Now;
+            var timeStamp = DateTime.Now;
             var html = await _websiteScraper.ScrapeDynamicWebsite(url);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);

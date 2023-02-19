@@ -18,4 +18,8 @@
     <ProjectReference Include="..\PriceTracker.Api.Application\PriceTracker.Api.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

@@ -14,10 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PriceTracker.Domain\PriceTracker.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Commands\" />
+    <ProjectReference Include="..\PriceTracker.Plugins.Shared\PriceTracker.Plugins.Shared.csproj" />
   </ItemGroup>
 
 </Project>

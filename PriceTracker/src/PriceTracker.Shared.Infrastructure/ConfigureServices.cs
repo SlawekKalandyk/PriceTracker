@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceTracker.Shared.Application.Common.Interfaces;
 using PriceTracker.Shared.Infrastructure.Persistence;
-using PriceTracker.Shared.Infrastructure.Services;
 
 namespace PriceTracker.Shared.Infrastructure
 {
@@ -21,8 +20,6 @@ namespace PriceTracker.Shared.Infrastructure
 
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
-
-            services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 
             return services;
         }

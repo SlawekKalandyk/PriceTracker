@@ -43,7 +43,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{C907B2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "interfaces", "interfaces", "{678E3AE1-9CB7-4875-B7D5-D041C810C996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.WinForms", "src\PriceTracker.WinForms\PriceTracker.WinForms.csproj", "{C274910E-A52F-4876-B838-15BAFBFFE641}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceTracker.WinForms", "src\PriceTracker.WinForms\PriceTracker.WinForms.csproj", "{C274910E-A52F-4876-B838-15BAFBFFE641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.Plugins.Application", "src\PriceTracker.Plugins.Application\PriceTracker.Plugins.Application.csproj", "{7245EBD9-DD12-416C-B284-5A30FF19E2D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceTracker.Plugins.Infrastructure", "src\PriceTracker.Plugins.Infrastructure\PriceTracker.Plugins.Infrastructure.csproj", "{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +165,22 @@ Global
 		{C274910E-A52F-4876-B838-15BAFBFFE641}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C274910E-A52F-4876-B838-15BAFBFFE641}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
 		{C274910E-A52F-4876-B838-15BAFBFFE641}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Debug-Scraper|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Debug-Scraper|Any CPU.Build.0 = Debug|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Release-Scraper|Any CPU.ActiveCfg = Release|Any CPU
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF}.Release-Scraper|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,6 +205,8 @@ Global
 		{C907B23B-8EFF-4D6C-B24A-0DE35F627661} = {B614784C-7C25-4751-9695-77205C0C58DD}
 		{678E3AE1-9CB7-4875-B7D5-D041C810C996} = {B614784C-7C25-4751-9695-77205C0C58DD}
 		{C274910E-A52F-4876-B838-15BAFBFFE641} = {678E3AE1-9CB7-4875-B7D5-D041C810C996}
+		{7245EBD9-DD12-416C-B284-5A30FF19E2D7} = {3724B7F6-5953-4010-A0A6-3E636C70CFCF}
+		{CB9FE134-5CD2-4AE5-AE86-39D9AA085DBF} = {3724B7F6-5953-4010-A0A6-3E636C70CFCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F072A7C6-029E-4198-9640-B061B52E2EE6}
