@@ -15,14 +15,23 @@ namespace PriceTracker.Plugins.Shared
             _dateTimeProvider = dateTimeProvider;
         }
 
-        public virtual async Task<Product> Scrape(string url, Product? product = null)
+        public virtual async Task<Product> Scrape(string url)
+        {
+            return await ScrapeCore(url);
+        }
+
+        public virtual async Task<Product> Scrape(Product product)
+        {
+            return await ScrapeCore(product.Url, product);
+        }
+
+        private async Task<Product> ScrapeCore(string url, Product? product = null)
         {
             var timeStamp = _dateTimeProvider.Now;
             var html = await _websiteScraper.ScrapeDynamicWebsite(url);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
             product ??= ScrapeProductInformation(url, htmlDocument);
-            product.Shop ??= Shop;
 
             var availability = ScrapeAvailability(htmlDocument, timeStamp);
             product.AvailabilityHistory.Add(availability);
@@ -35,7 +44,7 @@ namespace PriceTracker.Plugins.Shared
             return product;
         }
 
-        public abstract Shop Shop { get; }
+        public abstract ShopData ShopData { get; }
 
         protected abstract Product ScrapeProductInformation(string url, HtmlDocument htmlDocument);
 

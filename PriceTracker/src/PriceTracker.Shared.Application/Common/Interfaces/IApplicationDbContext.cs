@@ -10,5 +10,6 @@ namespace PriceTracker.Shared.Application.Common.Interfaces
         DbSet<Availability> Availabilities { get; }
         DbSet<Shop> Shops { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        int SaveChanges();
     }
 }

@@ -17,10 +17,10 @@ namespace PriceTracker.Plugins.Morele
         {
         }
 
-        public override Shop Shop => new()
+        public override ShopData ShopData => new()
         {
             Name = "Morele",
-            DomainUrls = new[] { "https://www.morele.net/" }
+            DomainUrls = new[] { "www.morele.net" }
         };
 
         protected override Product ScrapeProductInformation(string url, HtmlDocument htmlDocument)

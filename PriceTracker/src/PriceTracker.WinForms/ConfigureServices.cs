@@ -2,13 +2,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace PriceTracker.Shared.Application
+namespace PriceTracker.WinForms
 {
-    public static class ConfigureServices
+    internal static class ConfigureServices
     {
-        public static IServiceCollection AddSharedApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        internal static IServiceCollection AddInterfaceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(serviceConfiguration => serviceConfiguration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+            services.AddScoped<MainView>();
 
             return services;
         }

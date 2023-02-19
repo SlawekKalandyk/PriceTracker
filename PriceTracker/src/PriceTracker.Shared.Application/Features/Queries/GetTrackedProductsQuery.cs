@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PriceTracker.Domain.Entities;
 using PriceTracker.Shared.Application.Common.Interfaces;
 
-namespace PriceTracker.Scraper.Application.Features.Products.Queries.GetTrackedProducts
+namespace PriceTracker.Shared.Application.Features.Queries
 {
     public record GetTrackedProductsQuery : IRequest<GetTrackedProductsQueryResponse>
     {
@@ -24,7 +25,10 @@ namespace PriceTracker.Scraper.Application.Features.Products.Queries.GetTrackedP
 
         public Task<GetTrackedProductsQueryResponse> Handle(GetTrackedProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = _context.Products.Where(p => p.IsTracked);
+            var products = _context.Products.Where(p => p.IsTracked)
+                .Include(p => p.Shop)
+                .Include(p => p.PriceHistory)
+                .Include(p => p.AvailabilityHistory);
             var response = new GetTrackedProductsQueryResponse()
             {
                 Products = products

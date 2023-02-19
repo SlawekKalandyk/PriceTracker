@@ -1,10 +1,7 @@
 ﻿using MediatR;
-using PriceTracker.Plugins.Shared;
-using PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProducts;
-using PriceTracker.Scraper.Application.Features.Products.Queries.GetTrackedProducts;
-using PriceTracker.Shared.Application.Common.Interfaces;
+using PriceTracker.Shared.Application.Features.Queries;
 
-namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateTrackedProducts
+namespace PriceTracker.Scraper.Application.Features.Commands
 {
     public record UpdateTrackedProductsCommand : IRequest<UpdateTrackedProductsCommandResponse>
     {

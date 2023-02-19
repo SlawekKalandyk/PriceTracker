@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using PriceTracker.Domain.Entities;
 using PriceTracker.Plugins.Shared;
 using PriceTracker.Shared.Application.Common.Interfaces;
 
-namespace PriceTracker.Scraper.Application.Features.Products.Commands.LoadShops
+namespace PriceTracker.Scraper.Application.Features.Commands
 {
     public record LoadShopsCommand : IRequest<LoadShopsCommandResponse>
     {
@@ -25,10 +26,15 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.LoadShops
 
         public async Task<LoadShopsCommandResponse> Handle(LoadShopsCommand request, CancellationToken cancellationToken)
         {
-            foreach (var shop in _shopScrapers.Select(scraper => scraper.Shop))
+            foreach (var shopData in _shopScrapers.Select(scraper => scraper.ShopData))
             {
-                if (!_context.Shops.Any(existingShop => existingShop.Name == shop.Name))
+                if (!_context.Shops.Any(existingShop => existingShop.Name == shopData.Name))
                 {
+                    var shop = new Shop
+                    {
+                        Name = shopData.Name,
+                        DomainUrls = shopData.DomainUrls
+                    };
                     _context.Shops.Add(shop);
                 }
             }

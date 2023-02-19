@@ -4,8 +4,8 @@ namespace PriceTracker.Plugins.Shared
 {
     public class WebsiteScraper : IWebsiteScraper, IAsyncDisposable
     {
-        private readonly Browser _browser;
-        private readonly BrowserFetcher _chromiumBrowserFetcher = new(Product.Chrome);
+        private readonly IBrowser _browser;
+        private readonly IBrowserFetcher _chromiumBrowserFetcher = new BrowserFetcher(Product.Chrome);
 
         public WebsiteScraper()
         {

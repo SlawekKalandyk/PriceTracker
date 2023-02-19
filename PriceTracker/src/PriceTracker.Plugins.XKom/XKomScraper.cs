@@ -19,10 +19,10 @@ namespace PriceTracker.Plugins.XKom
         {
         }
 
-        public override Shop Shop => new()
+        public override ShopData ShopData => new()
         {
             Name = "X-Kom",
-            DomainUrls = new[] { "https://www.x-kom.pl/" }
+            DomainUrls = new[] { "www.x-kom.pl" }
         };
 
         protected override Product ScrapeProductInformation(string url, HtmlDocument htmlDocument)

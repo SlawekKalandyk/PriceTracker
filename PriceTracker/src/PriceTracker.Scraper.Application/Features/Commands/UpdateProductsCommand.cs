@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using PriceTracker.Domain.Entities;
+using PriceTracker.Plugins.Shared;
 using PriceTracker.Shared.Application.Common.Interfaces;
 using System.Threading.Tasks.Dataflow;
-using PriceTracker.Plugins.Shared;
 
-namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProducts
+namespace PriceTracker.Scraper.Application.Features.Commands
 {
     public record UpdateProductsCommand : IRequest<UpdateProductsCommandResponse>
     {
@@ -30,11 +30,11 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
 
         public async Task<UpdateProductsCommandResponse> Handle(UpdateProductsCommand request, CancellationToken cancellationToken)
         {
-            var blocks = new Dictionary<Shop, ActionBlock<Product>>();
+            var blocks = new Dictionary<string, ActionBlock<Product>>();
 
             foreach (var scraper in _scrapers)
             {
-                blocks[scraper.Shop] = new ActionBlock<Product>(async (product) =>
+                blocks[scraper.ShopData.Name] = new ActionBlock<Product>(async (product) =>
                 {
                     await UpdateProduct(product, cancellationToken);
                 }, new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = MaxTasksAtOnce });
@@ -42,7 +42,7 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
 
             foreach (var product in request.Products)
             {
-                blocks[product.Shop].Post(product);
+                blocks[product.Shop.Name].Post(product);
             }
 
             foreach (var block in blocks.Values)
@@ -58,14 +58,14 @@ namespace PriceTracker.Scraper.Application.Features.Products.Commands.UpdateProd
         private async Task UpdateProduct(Product product, CancellationToken cancellationToken)
         {
             var scraper = GetScraperForShop(_scrapers, product.Shop);
-            await scraper.Scrape(product.Url, product);
+            await scraper.Scrape(product);
 
             await _context.SaveChangesAsync(cancellationToken);
         }
 
         private IShopScraper GetScraperForShop(IEnumerable<IShopScraper> scrapers, Shop shop)
         {
-            return scrapers.Single(scraper => scraper.Shop == shop);
+            return scrapers.Single(scraper => scraper.ShopData.Name == shop.Name);
         }
     }
 }

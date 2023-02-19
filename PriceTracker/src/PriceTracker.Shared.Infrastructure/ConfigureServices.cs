@@ -20,8 +20,7 @@ namespace PriceTracker.Shared.Infrastructure
                     ));
 
 
-            services.AddScoped<IApplicationDbContext>(provider =>
-                provider.GetService<ApplicationDbContext>());
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddTransient<IDateTimeProvider, DateTimeProvider>();
 

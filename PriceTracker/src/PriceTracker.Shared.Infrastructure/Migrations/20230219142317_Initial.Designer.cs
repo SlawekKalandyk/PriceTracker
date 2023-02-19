@@ -11,13 +11,14 @@ using PriceTracker.Shared.Infrastructure.Persistence;
 namespace PriceTracker.Shared.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230130025609_Initial")]
+    [Migration("20230219142317_Initial")]
     partial class Initial
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Availability", b =>
                 {

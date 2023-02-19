@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Hosting;
-using PriceTracker.Scraper.Application.Features.Products.Commands.LoadShops;
-using PriceTracker.Scraper.Application.Features.Products.Commands.UpdateTrackedProducts;
+using PriceTracker.Scraper.Application.Features.Commands;
 
 namespace PriceTracker.Scraper
 {
