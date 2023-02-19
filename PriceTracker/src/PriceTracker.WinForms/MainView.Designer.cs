@@ -38,6 +38,7 @@
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UrlColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.CurrentPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemoveSelectedProductButton = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.AddProductPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsDataGridView)).BeginInit();
@@ -55,6 +56,7 @@
             // 
             // AddProductPanel
             // 
+            this.AddProductPanel.Controls.Add(this.RemoveSelectedProductButton);
             this.AddProductPanel.Controls.Add(this.AddProductProgressLabel);
             this.AddProductPanel.Controls.Add(this.AddProductButton);
             this.AddProductPanel.Controls.Add(this.AddProductLabel);
@@ -116,16 +118,20 @@
             this.ProductsDataGridView.RowTemplate.Height = 25;
             this.ProductsDataGridView.Size = new System.Drawing.Size(1243, 511);
             this.ProductsDataGridView.TabIndex = 0;
+            this.ProductsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDataGridView_CellClick);
             // 
             // NameColumn
             // 
+            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.NameColumn.HeaderText = "Name";
             this.NameColumn.Name = "NameColumn";
+            this.NameColumn.Width = 64;
             // 
             // UrlColumn
             // 
             this.UrlColumn.HeaderText = "Url";
             this.UrlColumn.Name = "UrlColumn";
+            this.UrlColumn.Width = 500;
             // 
             // CurrentPriceColumn
             // 
@@ -133,6 +139,17 @@
             this.CurrentPriceColumn.HeaderText = "Current price";
             this.CurrentPriceColumn.Name = "CurrentPriceColumn";
             this.CurrentPriceColumn.Width = 101;
+            // 
+            // RemoveSelectedProductButton
+            // 
+            this.RemoveSelectedProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveSelectedProductButton.Location = new System.Drawing.Point(1153, 9);
+            this.RemoveSelectedProductButton.Name = "RemoveSelectedProductButton";
+            this.RemoveSelectedProductButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveSelectedProductButton.TabIndex = 4;
+            this.RemoveSelectedProductButton.Text = "Remove";
+            this.RemoveSelectedProductButton.UseVisualStyleBackColor = true;
+            this.RemoveSelectedProductButton.Click += new System.EventHandler(this.RemoveSelectedProductButton_Click);
             // 
             // MainView
             // 
@@ -154,13 +171,14 @@
 
         private Panel MainPanel;
         private DataGridView ProductsDataGridView;
-        private DataGridViewTextBoxColumn NameColumn;
-        private DataGridViewLinkColumn UrlColumn;
-        private DataGridViewTextBoxColumn CurrentPriceColumn;
         private Panel AddProductPanel;
         private Button AddProductButton;
         private Label AddProductLabel;
         private TextBox AddProductTextBox;
         private Label AddProductProgressLabel;
+        private DataGridViewTextBoxColumn NameColumn;
+        private DataGridViewLinkColumn UrlColumn;
+        private DataGridViewTextBoxColumn CurrentPriceColumn;
+        private Button RemoveSelectedProductButton;
     }
 }
