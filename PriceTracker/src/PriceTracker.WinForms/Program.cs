@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,8 +8,6 @@ using PriceTracker.Plugins;
 using PriceTracker.Shared.Application;
 using PriceTracker.Shared.Application.Features.Commands;
 using PriceTracker.Shared.Infrastructure;
-using System.Threading;
-using MediatR;
 
 namespace PriceTracker.WinForms
 {

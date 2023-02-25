@@ -1,7 +1,9 @@
 using MediatR;
 using PriceTracker.Api.Application.Features.Commands;
+using PriceTracker.Api.Application.Features.Queries;
 using PriceTracker.Domain.Entities;
 using PriceTracker.Shared.Application.Features.Queries;
+using PriceTracker.WinForms.Helpers;
 
 namespace PriceTracker.WinForms
 {
@@ -37,7 +39,6 @@ namespace PriceTracker.WinForms
             if (string.IsNullOrEmpty(AddProductTextBox.Text))
                 return;
 
-            AddProductProgressLabel.Visible = true;
             AddProductButton.Enabled = false;
             AddProductTextBox.ReadOnly = true;
             var addProductResponse = await _mediator.Send(new AddProductCommand(AddProductTextBox.Text));
@@ -46,7 +47,6 @@ namespace PriceTracker.WinForms
                 AddProduct(addProductResponse.Product);
             }
 
-            AddProductProgressLabel.Visible = false;
             AddProductButton.Enabled = true;
             AddProductTextBox.ReadOnly = false;
             AddProductTextBox.Clear();
@@ -59,7 +59,8 @@ namespace PriceTracker.WinForms
                 var rowIndex = ProductsDataGridView.Rows.Add(
                     product.Name,
                     product.Url,
-                    product.PriceHistory.MaxBy(p => p.TimeStamp)?.CurrentPrice
+                    product.LastRecordedPrice?.CurrentPrice,
+                    product.LastUpdateTime?.ToString()
                 );
                 var row = ProductsDataGridView.Rows[rowIndex];
                 row.Tag = product.Id;
@@ -69,12 +70,12 @@ namespace PriceTracker.WinForms
 
         private void ProductsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == ProductsDataGridView.Columns.IndexOf(UrlColumn))
+            if (e.ColumnIndex == ProductsDataGridView.Columns.IndexOf(UrlColumn) && e.RowIndex > -1)
             {
                 var url = ProductsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
                 if (url != null)
                 {
-                    System.Diagnostics.Process.Start("explorer", url);
+                    UrlRunner.Run(url);
                 }
             }
         }
@@ -84,25 +85,52 @@ namespace PriceTracker.WinForms
             var removedRowIndexes = new List<int>();
             foreach (DataGridViewCell cell in ProductsDataGridView.SelectedCells)
             {
-                if (removedRowIndexes.Contains(cell.RowIndex))
+                if (removedRowIndexes.Contains(cell.RowIndex) || cell.RowIndex < 0)
                     continue;
-                
+
                 removedRowIndexes.Add(cell.RowIndex);
                 var row = ProductsDataGridView.Rows[cell.RowIndex];
-                var trackedProducts = await _mediator.Send(new GetTrackedProductsQuery());
-                var product = trackedProducts.Products.SingleOrDefault(p => p.Id == (int)row.Tag);
+                if (row.Tag is not int productId) 
+                    continue;
+
+                var product = (await _mediator.Send(new GetProductByIdQuery(productId))).Product;
                 if (product != null)
                 {
-                    await _mediator.Send(new RemoveProductCommand(product)).ContinueWith(_ =>
-                    {
-                        ProductsDataGridView.Invoke(() =>
-                        {
-                            ProductsDataGridView.Rows.Remove(row);
-                            ProductsDataGridView.Refresh();
-                        });
-                    });
+                    await _mediator.Send(new RemoveProductCommand(product));
+                    ProductsDataGridView.Rows.Remove(row);
+                    ProductsDataGridView.Refresh();
                 }
             }
+        }
+
+        private async void ProductsDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex != ProductsDataGridView.Columns.IndexOf(UrlColumn) && e.RowIndex > -1)
+            {
+                var row = ProductsDataGridView.Rows[e.RowIndex];
+                if (row.Tag == null)
+                    return;
+
+                var product = (await _mediator.Send(new GetProductByIdQuery((int)row.Tag))).Product;
+                if (product == null)
+                    return;
+
+                using (var detailView = new ProductDetailView(_mediator, product))
+                {
+                    detailView.ShowDialog(this);
+                    product = detailView.Product;
+                }
+
+                UpdateProductRow(product, e.RowIndex);
+            }
+        }
+
+        private void UpdateProductRow(Product product, int rowIndex)
+        {
+            ProductsDataGridView.Rows[rowIndex].Cells[NameColumn.Name].Value = product.Name;
+            ProductsDataGridView.Rows[rowIndex].Cells[UrlColumn.Name].Value = product.Url;
+            ProductsDataGridView.Rows[rowIndex].Cells[CurrentPriceColumn.Name].Value = product.LastRecordedPrice?.CurrentPrice;
+            ProductsDataGridView.Rows[rowIndex].Cells[LastUpdateTimeColumn.Name].Value = product.LastUpdateTime?.ToString();
         }
     }
 }

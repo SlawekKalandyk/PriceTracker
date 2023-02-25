@@ -6,5 +6,7 @@ namespace PriceTracker.Domain.Entities
     {
         public bool IsAvailable { get; set; }
         public DateTime TimeStamp { get; set; }
+
+        public Product Product { get; set; }
     }
 }

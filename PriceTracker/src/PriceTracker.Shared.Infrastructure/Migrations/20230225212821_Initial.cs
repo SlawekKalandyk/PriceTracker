@@ -34,6 +34,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Url = table.Column<string>(type: "TEXT", nullable: false),
                     IsTracked = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PriceNotificationThreshold = table.Column<decimal>(type: "TEXT", nullable: false),
                     ShopId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -55,7 +56,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     IsAvailable = table.Column<bool>(type: "INTEGER", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ProductId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ProductId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,7 +65,8 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                         name: "FK_Availabilities_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,7 +78,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     CurrentPrice = table.Column<decimal>(type: "TEXT", nullable: false),
                     Discount = table.Column<decimal>(type: "TEXT", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ProductId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ProductId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,7 +87,8 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                         name: "FK_Prices_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

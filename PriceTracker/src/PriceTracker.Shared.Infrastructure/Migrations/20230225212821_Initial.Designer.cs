@@ -11,7 +11,7 @@ using PriceTracker.Shared.Infrastructure.Persistence;
 namespace PriceTracker.Shared.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230219153732_Initial")]
+    [Migration("20230225212821_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -29,7 +29,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("TimeStamp")
@@ -54,7 +54,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     b.Property<decimal>("Discount")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("TimeStamp")
@@ -78,6 +78,9 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PriceNotificationThreshold")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ShopId")
@@ -118,16 +121,24 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Availability", b =>
                 {
-                    b.HasOne("PriceTracker.Domain.Entities.Product", null)
+                    b.HasOne("PriceTracker.Domain.Entities.Product", "Product")
                         .WithMany("AvailabilityHistory")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Price", b =>
                 {
-                    b.HasOne("PriceTracker.Domain.Entities.Product", null)
+                    b.HasOne("PriceTracker.Domain.Entities.Product", "Product")
                         .WithMany("PriceHistory")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("PriceTracker.Domain.Entities.Product", b =>

@@ -13,6 +13,12 @@ namespace PriceTracker.Shared.Infrastructure.Persistence.Configurations
 
             builder.Property(product => product.Url)
                 .IsRequired();
+
+            builder.HasMany(product => product.AvailabilityHistory)
+                .WithOne(availability => availability.Product);
+
+            builder.HasMany(product => product.PriceHistory)
+                .WithOne(price => price.Product);
         }
     }
 }
