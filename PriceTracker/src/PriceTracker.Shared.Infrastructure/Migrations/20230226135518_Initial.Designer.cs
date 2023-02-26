@@ -11,7 +11,7 @@ using PriceTracker.Shared.Infrastructure.Persistence;
 namespace PriceTracker.Shared.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230225212821_Initial")]
+    [Migration("20230226135518_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -51,7 +51,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     b.Property<decimal>("CurrentPrice")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Discount")
+                    b.Property<decimal>("OriginalPrice")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ProductId")

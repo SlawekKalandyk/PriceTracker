@@ -43,7 +43,7 @@ namespace PriceTracker.Plugins.XKom
                 return new Price
                 {
                     CurrentPrice = 0m,
-                    Discount = 0m,
+                    OriginalPrice = 0m,
                     TimeStamp = timeStamp
                 };
             }
@@ -71,11 +71,10 @@ namespace PriceTracker.Plugins.XKom
             }
 
             var currentPrice = discountedPrice == 0m ? fullPrice : discountedPrice;
-            var discount = fullPrice - discountedPrice;
             return new Price
             {
                 CurrentPrice = currentPrice,
-                Discount = discount,
+                OriginalPrice = fullPrice,
                 TimeStamp = timeStamp
             };
         }

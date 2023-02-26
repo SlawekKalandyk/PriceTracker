@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Shared.Application.Common.Interfaces;
 
 namespace PriceTracker.Shared.Application.Features.Queries
 {
@@ -15,21 +13,19 @@ namespace PriceTracker.Shared.Application.Features.Queries
 
     public class GetTrackedProductsQueryHandler : IRequestHandler<GetTrackedProductsQuery, GetTrackedProductsQueryResponse>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly IMediator _mediator;
 
-        public GetTrackedProductsQueryHandler(IApplicationDbContext context)
+        public GetTrackedProductsQueryHandler(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
-        public Task<GetTrackedProductsQueryResponse> Handle(GetTrackedProductsQuery request, CancellationToken cancellationToken)
+        public async Task<GetTrackedProductsQueryResponse> Handle(GetTrackedProductsQuery request, CancellationToken cancellationToken)
         {
-            var products = _context.Products.Where(p => p.IsTracked)
-                .Include(p => p.Shop)
-                .Include(p => p.PriceHistory)
-                .Include(p => p.AvailabilityHistory);
-            var response = new GetTrackedProductsQueryResponse(products);
-            return Task.FromResult(response);
+            var products = (await _mediator.Send(new GetProductsQuery(), cancellationToken))
+                .Products
+                .Where(p => p.IsTracked);
+            return new GetTrackedProductsQueryResponse(products);
         }
     }
 }

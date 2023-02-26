@@ -76,7 +76,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CurrentPrice = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Discount = table.Column<decimal>(type: "TEXT", nullable: false),
+                    OriginalPrice = table.Column<decimal>(type: "TEXT", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ProductId = table.Column<int>(type: "INTEGER", nullable: false)
                 },

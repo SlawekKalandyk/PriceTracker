@@ -1,4 +1,6 @@
-﻿namespace PriceTracker.WinForms
+﻿using PriceTracker.WinForms.Controls;
+
+namespace PriceTracker.WinForms.Views
 {
     partial class ProductDetailView
     {
@@ -42,10 +44,10 @@
             UrlLabel = new Label();
             NameLabel = new Label();
             PriceGroupBox = new GroupBox();
-            DiscountSpin = new NumericUpDown();
-            OriginalPriceSpin = new NumericUpDown();
-            CurrentPriceSpin = new NumericUpDown();
-            ThresholdSpin = new NumericUpDown();
+            DiscountSpin = new CurrencySpin();
+            OriginalPriceSpin = new CurrencySpin();
+            CurrentPriceSpin = new CurrencySpin();
+            ThresholdSpin = new CurrencySpin();
             ThresholdLabel = new Label();
             DiscountLabel = new Label();
             OriginalPriceLabel = new Label();
@@ -210,7 +212,6 @@
             // DiscountSpin
             // 
             DiscountSpin.Location = new Point(97, 81);
-            DiscountSpin.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             DiscountSpin.Name = "DiscountSpin";
             DiscountSpin.ReadOnly = true;
             DiscountSpin.Size = new Size(120, 23);
@@ -219,7 +220,6 @@
             // OriginalPriceSpin
             // 
             OriginalPriceSpin.Location = new Point(97, 52);
-            OriginalPriceSpin.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             OriginalPriceSpin.Name = "OriginalPriceSpin";
             OriginalPriceSpin.ReadOnly = true;
             OriginalPriceSpin.Size = new Size(120, 23);
@@ -228,7 +228,6 @@
             // CurrentPriceSpin
             // 
             CurrentPriceSpin.Location = new Point(97, 23);
-            CurrentPriceSpin.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             CurrentPriceSpin.Name = "CurrentPriceSpin";
             CurrentPriceSpin.ReadOnly = true;
             CurrentPriceSpin.Size = new Size(120, 23);
@@ -237,7 +236,6 @@
             // ThresholdSpin
             // 
             ThresholdSpin.Location = new Point(559, 23);
-            ThresholdSpin.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             ThresholdSpin.Name = "ThresholdSpin";
             ThresholdSpin.Size = new Size(120, 23);
             ThresholdSpin.TabIndex = 14;
@@ -328,10 +326,10 @@
         private Label DiscountLabel;
         private TextBox LastUpdateTimeTextBox;
         private Label LastUpdateTimeLabel;
-        private NumericUpDown DiscountSpin;
-        private NumericUpDown OriginalPriceSpin;
-        private NumericUpDown CurrentPriceSpin;
-        private NumericUpDown ThresholdSpin;
+        private CurrencySpin DiscountSpin;
+        private CurrencySpin OriginalPriceSpin;
+        private CurrencySpin CurrentPriceSpin;
+        private CurrencySpin ThresholdSpin;
         private Label ThresholdLabel;
         private Button OpenUrlButton;
     }

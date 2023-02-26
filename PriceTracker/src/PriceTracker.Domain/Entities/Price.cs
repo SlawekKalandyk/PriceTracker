@@ -6,12 +6,13 @@ namespace PriceTracker.Domain.Entities
     public class Price : BaseEntity
     {
         public decimal CurrentPrice { get; set; }
-        public decimal Discount { get; set; } = 0m;
+        public decimal OriginalPrice { get; set; }
         public DateTime TimeStamp { get; set; }
 
         public Product Product { get; set; }
 
-        [NotMapped]
-        public decimal OriginalPrice => CurrentPrice + Discount;
+        [NotMapped] 
+        public decimal Discount => OriginalPrice - CurrentPrice;
+
     }
 }

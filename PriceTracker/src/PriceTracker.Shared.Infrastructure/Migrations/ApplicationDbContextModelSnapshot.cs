@@ -48,7 +48,7 @@ namespace PriceTracker.Shared.Infrastructure.Migrations
                     b.Property<decimal>("CurrentPrice")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Discount")
+                    b.Property<decimal>("OriginalPrice")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ProductId")

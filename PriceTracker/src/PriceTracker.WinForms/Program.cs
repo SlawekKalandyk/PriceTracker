@@ -8,6 +8,7 @@ using PriceTracker.Plugins;
 using PriceTracker.Shared.Application;
 using PriceTracker.Shared.Application.Features.Commands;
 using PriceTracker.Shared.Infrastructure;
+using PriceTracker.WinForms.Views;
 
 namespace PriceTracker.WinForms
 {

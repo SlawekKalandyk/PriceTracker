@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using PriceTracker.WinForms.Views;
 
 namespace PriceTracker.WinForms
 {

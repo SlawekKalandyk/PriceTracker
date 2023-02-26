@@ -3,7 +3,7 @@ using PriceTracker.Api.Application.Features.Commands;
 using PriceTracker.Domain.Entities;
 using PriceTracker.WinForms.Helpers;
 
-namespace PriceTracker.WinForms
+namespace PriceTracker.WinForms.Views
 {
     public partial class ProductDetailView : Form
     {

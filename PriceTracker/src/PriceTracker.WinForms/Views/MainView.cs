@@ -5,7 +5,7 @@ using PriceTracker.Domain.Entities;
 using PriceTracker.Shared.Application.Features.Queries;
 using PriceTracker.WinForms.Helpers;
 
-namespace PriceTracker.WinForms
+namespace PriceTracker.WinForms.Views
 {
     public partial class MainView : Form
     {
@@ -13,9 +13,8 @@ namespace PriceTracker.WinForms
 
         public MainView(IMediator mediator)
         {
-            _mediator = mediator;
-
             InitializeComponent();
+            _mediator = mediator;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -26,9 +25,9 @@ namespace PriceTracker.WinForms
 
         private void LoadTrackedProducts()
         {
-            var trackedProducts = _mediator.Send(new GetTrackedProductsQuery()).Result.Products;
+            var products = _mediator.Send(new GetProductsQuery()).Result.Products;
 
-            foreach (var product in trackedProducts)
+            foreach (var product in products)
             {
                 AddProduct(product);
             }

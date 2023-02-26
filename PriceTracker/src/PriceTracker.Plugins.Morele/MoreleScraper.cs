@@ -38,14 +38,13 @@ namespace PriceTracker.Plugins.Morele
             var originalPriceNode = htmlDocument.DocumentNode.SelectSingleNode(_originalPriceExpression);
             var currentPriceNode = htmlDocument.DocumentNode.SelectSingleNode(_currentPriceExpression);
 
-            var currentPrice = currentPriceNode.GetAttributeValue("content", 0m);
-            var originalPrice = originalPriceNode == null ? 0m : MorelePriceToDecimal(originalPriceNode.InnerText);
-            var discount = originalPrice == 0m ? 0m : originalPrice - currentPrice;
+            var currentPrice = currentPriceNode.GetAttributeValue("data-price", 0m);
+            var originalPrice = originalPriceNode == null ? currentPrice : MorelePriceToDecimal(originalPriceNode.InnerText);
 
             return new Price
             {
                 CurrentPrice = currentPrice,
-                Discount = discount,
+                OriginalPrice = originalPrice,
                 TimeStamp = timeStamp
             };
         }
@@ -64,7 +63,7 @@ namespace PriceTracker.Plugins.Morele
         {
             morelePrice = morelePrice.Replace("zł", "")
                 .Replace(" ", "")
-                .Replace(",", "");
+                .Replace(",", ".");
 
             if (decimal.TryParse(morelePrice, out var decimalMorelePrice))
             {

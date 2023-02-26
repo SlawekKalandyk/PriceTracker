@@ -1,4 +1,4 @@
-﻿namespace PriceTracker.WinForms
+﻿namespace PriceTracker.WinForms.Views
 {
     partial class MainView
     {

@@ -22,15 +22,14 @@ namespace PriceTracker.Api.Application.Features.Queries
             _context = context;
         }
 
-        public Task<GetProductByIdQueryResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var product = _context.Products
                 .Include(p => p.Shop)
                 .Include(p => p.PriceHistory)
                 .Include(p => p.AvailabilityHistory)
                 .SingleOrDefault(p => p.Id == request.Id);
-            var response = new GetProductByIdQueryResponse(product);
-            return Task.FromResult(response);
+            return new GetProductByIdQueryResponse(product);
         }
     }
 }
