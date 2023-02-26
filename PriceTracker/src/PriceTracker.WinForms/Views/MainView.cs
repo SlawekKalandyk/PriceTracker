@@ -67,7 +67,7 @@ namespace PriceTracker.WinForms.Views
             });
         }
 
-        private void ProductsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void ProductsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == ProductsDataGridView.Columns.IndexOf(UrlColumn) && e.RowIndex > -1)
             {

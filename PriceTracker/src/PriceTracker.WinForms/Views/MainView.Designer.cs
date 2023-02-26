@@ -114,7 +114,7 @@
             ProductsDataGridView.RowTemplate.Height = 25;
             ProductsDataGridView.Size = new Size(1243, 511);
             ProductsDataGridView.TabIndex = 0;
-            ProductsDataGridView.CellClick += ProductsDataGridView_CellClick;
+            ProductsDataGridView.CellContentClick += ProductsDataGridView_CellContentClick;
             ProductsDataGridView.CellMouseDoubleClick += ProductsDataGridView_CellMouseDoubleClick;
             // 
             // NameColumn
