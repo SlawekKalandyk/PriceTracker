@@ -13,6 +13,5 @@ namespace PriceTracker.Domain.Entities
 
         [NotMapped] 
         public decimal Discount => OriginalPrice - CurrentPrice;
-
     }
 }

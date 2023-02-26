@@ -211,34 +211,47 @@ namespace PriceTracker.WinForms.Views
             // 
             // DiscountSpin
             // 
+            DiscountSpin.DecimalPlaces = 2;
             DiscountSpin.Location = new Point(97, 81);
+            DiscountSpin.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             DiscountSpin.Name = "DiscountSpin";
             DiscountSpin.ReadOnly = true;
             DiscountSpin.Size = new Size(120, 23);
             DiscountSpin.TabIndex = 17;
+            DiscountSpin.ThousandsSeparator = true;
             // 
             // OriginalPriceSpin
             // 
+            OriginalPriceSpin.DecimalPlaces = 2;
             OriginalPriceSpin.Location = new Point(97, 52);
+            OriginalPriceSpin.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             OriginalPriceSpin.Name = "OriginalPriceSpin";
             OriginalPriceSpin.ReadOnly = true;
             OriginalPriceSpin.Size = new Size(120, 23);
             OriginalPriceSpin.TabIndex = 16;
+            OriginalPriceSpin.ThousandsSeparator = true;
             // 
             // CurrentPriceSpin
             // 
+            CurrentPriceSpin.DecimalPlaces = 2;
             CurrentPriceSpin.Location = new Point(97, 23);
+            CurrentPriceSpin.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             CurrentPriceSpin.Name = "CurrentPriceSpin";
             CurrentPriceSpin.ReadOnly = true;
             CurrentPriceSpin.Size = new Size(120, 23);
             CurrentPriceSpin.TabIndex = 15;
+            CurrentPriceSpin.ThousandsSeparator = true;
             // 
             // ThresholdSpin
             // 
+            ThresholdSpin.DecimalPlaces = 2;
             ThresholdSpin.Location = new Point(559, 23);
+            ThresholdSpin.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             ThresholdSpin.Name = "ThresholdSpin";
             ThresholdSpin.Size = new Size(120, 23);
             ThresholdSpin.TabIndex = 14;
+            ThresholdSpin.ThousandsSeparator = true;
+            ThresholdSpin.ValueChanged += ThresholdSpin_ValueChanged;
             // 
             // ThresholdLabel
             // 

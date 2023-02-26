@@ -8,6 +8,7 @@ namespace PriceTracker.WinForms.Views
     public partial class ProductDetailView : Form
     {
         private readonly IMediator _mediator;
+        private readonly bool _initialized = false;
 
         public ProductDetailView()
         {
@@ -22,6 +23,7 @@ namespace PriceTracker.WinForms.Views
 
             ConfigureControls();
             LoadProductIntoView(product);
+            _initialized = true;
         }
 
         public Product Product { get; private set; }
@@ -62,12 +64,19 @@ namespace PriceTracker.WinForms.Views
 
         private async void IsTrackedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            await _mediator.Send(new ChangeProductTrackedStateCommand(Product, IsTrackedCheckBox.Checked));
+            if (_initialized)
+                await _mediator.Send(new ChangeProductTrackedStateCommand(Product, IsTrackedCheckBox.Checked));
         }
 
         private void OpenUrlButton_Click(object sender, EventArgs e)
         {
             UrlRunner.Run(UrlTextBox.Text);
+        }
+
+        private async void ThresholdSpin_ValueChanged(object sender, EventArgs e)
+        {
+            if (_initialized)
+                await _mediator.Send(new ChangeProductNotificationThresholdCommand(Product, ThresholdSpin.Value));
         }
     }
 }
