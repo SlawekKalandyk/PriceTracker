@@ -53,6 +53,7 @@ namespace PriceTracker.WinForms.Views
             OriginalPriceLabel = new Label();
             CurrentPriceLabel = new Label();
             MainPanel = new Panel();
+            AvailabilityLabel = new Label();
             ProductDetailsFlowLayoutPanel.SuspendLayout();
             InformationGroupBox.SuspendLayout();
             PriceGroupBox.SuspendLayout();
@@ -75,6 +76,7 @@ namespace PriceTracker.WinForms.Views
             // 
             // InformationGroupBox
             // 
+            InformationGroupBox.Controls.Add(AvailabilityLabel);
             InformationGroupBox.Controls.Add(OpenUrlButton);
             InformationGroupBox.Controls.Add(LastUpdateTimeTextBox);
             InformationGroupBox.Controls.Add(LastUpdateTimeLabel);
@@ -298,6 +300,16 @@ namespace PriceTracker.WinForms.Views
             MainPanel.Size = new Size(800, 450);
             MainPanel.TabIndex = 0;
             // 
+            // AvailabilityLabel
+            // 
+            AvailabilityLabel.AutoSize = true;
+            AvailabilityLabel.ForeColor = Color.Green;
+            AvailabilityLabel.Location = new Point(427, 87);
+            AvailabilityLabel.Name = "AvailabilityLabel";
+            AvailabilityLabel.Size = new Size(55, 15);
+            AvailabilityLabel.TabIndex = 11;
+            AvailabilityLabel.Text = "Available";
+            // 
             // ProductDetailView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -345,5 +357,6 @@ namespace PriceTracker.WinForms.Views
         private CurrencySpin ThresholdSpin;
         private Label ThresholdLabel;
         private Button OpenUrlButton;
+        private Label AvailabilityLabel;
     }
 }

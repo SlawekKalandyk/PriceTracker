@@ -58,7 +58,9 @@ namespace PriceTracker.WinForms.Views
                 var rowIndex = ProductsDataGridView.Rows.Add(
                     product.Name,
                     product.Url,
-                    product.LastRecordedPrice?.CurrentPrice,
+                    product.LastRecordedAvailability?.IsAvailable ?? false
+                        ? product.LastRecordedPrice?.CurrentPrice
+                        : null,
                     product.LastUpdateTime?.ToString()
                 );
                 var row = ProductsDataGridView.Rows[rowIndex];
@@ -128,7 +130,10 @@ namespace PriceTracker.WinForms.Views
         {
             ProductsDataGridView.Rows[rowIndex].Cells[NameColumn.Name].Value = product.Name;
             ProductsDataGridView.Rows[rowIndex].Cells[UrlColumn.Name].Value = product.Url;
-            ProductsDataGridView.Rows[rowIndex].Cells[CurrentPriceColumn.Name].Value = product.LastRecordedPrice?.CurrentPrice;
+            ProductsDataGridView.Rows[rowIndex].Cells[CurrentPriceColumn.Name].Value = 
+                product.LastRecordedAvailability?.IsAvailable ?? false 
+                ? product.LastRecordedPrice?.CurrentPrice
+                : null;
             ProductsDataGridView.Rows[rowIndex].Cells[LastUpdateTimeColumn.Name].Value = product.LastUpdateTime?.ToString();
         }
     }

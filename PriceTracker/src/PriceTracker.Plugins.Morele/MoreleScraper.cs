@@ -10,7 +10,7 @@ namespace PriceTracker.Plugins.Morele
         private readonly XPathExpression _productNameExpression = XPathExpression.Compile(@"//h1[@class='prod-name']");
         private readonly XPathExpression _currentPriceExpression = XPathExpression.Compile(@"//*[@id='product_price_brutto']");
         private readonly XPathExpression _originalPriceExpression = XPathExpression.Compile(@"//*[@class='product-price-old']");
-        private readonly XPathExpression _availabilityExpression = XPathExpression.Compile(@"//*[text()[contains(., 'PRODUKT NIEDOSTĘPNY')]]");
+        private readonly XPathExpression _availabilityExpression = XPathExpression.Compile(@"//*[text()[contains(., 'Powiadom mnie o dostępności')]]");
 
         public MoreleScraper(IWebsiteScraper websiteScraper) : base(websiteScraper)
         {

@@ -28,6 +28,12 @@ namespace PriceTracker.WinForms.Views
 
         public Product Product { get; private set; }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            ActiveControl = ProductDetailsFlowLayoutPanel;
+        }
+
         private void ConfigureControls()
         {
             CurrentPriceSpin.Controls[0].Enabled = false;
@@ -45,12 +51,33 @@ namespace PriceTracker.WinForms.Views
             ThresholdSpin.Value = product.PriceNotificationThreshold;
             LastUpdateTimeTextBox.Text = product.LastUpdateTime?.ToString();
 
-            var lastPrice = Product.PriceHistory.MaxBy(p => p.TimeStamp);
-            if (lastPrice != null)
+            var lastAvailability = Product.LastRecordedAvailability;
+            if (lastAvailability != null)
+            {
+                if (lastAvailability.IsAvailable)
+                {
+                    AvailabilityLabel.ForeColor = Color.DarkGreen;
+                    AvailabilityLabel.Text = "Available";
+                }
+                else
+                {
+                    AvailabilityLabel.ForeColor = Color.Red;
+                    AvailabilityLabel.Text = "Unavailable";
+                }
+            }
+
+            var lastPrice = Product.LastRecordedPrice;
+            if (lastPrice != null && lastAvailability is { IsAvailable: true })
             {
                 CurrentPriceSpin.Value = lastPrice.CurrentPrice;
                 OriginalPriceSpin.Value = lastPrice.OriginalPrice;
                 DiscountSpin.Value = lastPrice.Discount;
+            }
+            else
+            {
+                CurrentPriceSpin.Value = 0m;
+                OriginalPriceSpin.Value = 0m;
+                DiscountSpin.Value = 0m;
             }
         }
 
