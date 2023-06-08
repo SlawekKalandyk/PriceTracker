@@ -8,6 +8,7 @@ using PriceTracker.Plugins;
 using PriceTracker.Shared.Application;
 using PriceTracker.Shared.Application.Features.Commands;
 using PriceTracker.Shared.Infrastructure;
+using PriceTracker.Shared.Infrastructure.Persistence;
 using PriceTracker.WinForms.Views;
 
 namespace PriceTracker.WinForms
@@ -40,6 +41,10 @@ namespace PriceTracker.WinForms
                     configuration
                         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                         .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true);
+
+#if DEBUG
+                    configuration.AddUserSecrets<ApplicationDbContext>();
+#endif
 
                     configuration.Build();
                 })

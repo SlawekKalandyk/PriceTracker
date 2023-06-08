@@ -24,7 +24,7 @@ namespace PriceTracker.Plugins.Shared
 
         private async Task<Product> ScrapeCore(string url, Product? product = null)
         {
-            var timeStamp = DateTime.Now;
+            var timeStamp = DateTime.UtcNow;
             var html = await _websiteScraper.ScrapeDynamicWebsite(url);
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);

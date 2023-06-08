@@ -19,6 +19,9 @@ namespace PriceTracker.Shared.Infrastructure.Persistence.Configurations
 
             builder.HasMany(product => product.PriceHistory)
                 .WithOne(price => price.Product);
+
+            builder.Property(product => product.Id)
+                .UseIdentityAlwaysColumn();
         }
     }
 }

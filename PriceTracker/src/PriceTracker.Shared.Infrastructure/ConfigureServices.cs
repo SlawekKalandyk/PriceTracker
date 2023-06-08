@@ -10,15 +10,17 @@ namespace PriceTracker.Shared.Infrastructure
     {
         public static IServiceCollection AddSharedInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = Environment.ExpandEnvironmentVariables(configuration.GetConnectionString("DefaultConnection"));
-
-            services.AddDbContext<ApplicationDbContext>(options
-                => options.UseSqlite(
-                    connectionString,
-                    builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
-                    ));
-
-
+#if SQLITE
+            var connectionString = configuration["ConnectionStrings:Sqlite"];
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(connectionString, builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+                );
+#elif DEBUG
+            var connectionString = configuration["ConnectionStrings:Postgres"];
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(connectionString, builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+            );
+#endif
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
             return services;

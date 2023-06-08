@@ -6,6 +6,7 @@ using PriceTracker.Scraper.Application;
 using PriceTracker.Scraper.Infrastructure;
 using PriceTracker.Shared.Application;
 using PriceTracker.Shared.Infrastructure;
+using PriceTracker.Shared.Infrastructure.Persistence;
 
 namespace PriceTracker.Scraper
 {
@@ -20,7 +21,9 @@ namespace PriceTracker.Scraper
                     configuration
                         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                         .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true);
-
+#if DEBUG
+                    configuration.AddUserSecrets<ApplicationDbContext>();
+#endif
                     configuration.Build();
                 })
                 .ConfigureServices((hostContext, services) =>

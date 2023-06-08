@@ -13,6 +13,9 @@ namespace PriceTracker.Shared.Infrastructure.Persistence.Configurations
 
             builder.Property(price => price.TimeStamp)
                 .IsRequired();
+
+            builder.Property(price => price.Id)
+                .UseIdentityAlwaysColumn();
         }
     }
 }
