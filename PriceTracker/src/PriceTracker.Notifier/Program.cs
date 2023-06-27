@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceTracker.Plugins;
 using PriceTracker.Shared;
 using PriceTracker.Shared.Persistence;
 
-namespace PriceTracker.Scraper
+namespace PriceTracker.Notifier
 {
     public class Program
     {
@@ -26,9 +25,7 @@ namespace PriceTracker.Scraper
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSharedServices(hostContext.Configuration)
-                        .AddScraperServices(hostContext.Configuration)
-                        .AddPluginShopServices(hostContext.Configuration)
-                        .AddHostedService<ScraperHostedService>();
+                        .AddHostedService<NotifierHostedService>();
                 }).Build();
 
             await host.RunAsync();

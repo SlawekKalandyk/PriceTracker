@@ -30,11 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PriceTracker.Api.Application\PriceTracker.Api.Application.csproj" />
-    <ProjectReference Include="..\PriceTracker.Api.Infrastructure\PriceTracker.Api.Infrastructure.csproj" />
+    <ProjectReference Include="..\PriceTracker.Api\PriceTracker.Api.csproj" />
+    <ProjectReference Include="..\PriceTracker.Shared\PriceTracker.Shared.csproj" />
     <ProjectReference Include="..\Pricetracker.Plugins\PriceTracker.Plugins.csproj" />
-    <ProjectReference Include="..\PriceTracker.Shared.Application\PriceTracker.Shared.Application.csproj" />
-    <ProjectReference Include="..\PriceTracker.Shared.Infrastructure\PriceTracker.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

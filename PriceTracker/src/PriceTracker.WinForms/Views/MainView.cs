@@ -1,8 +1,8 @@
 using MediatR;
-using PriceTracker.Api.Application.Features.Commands;
-using PriceTracker.Api.Application.Features.Queries;
+using PriceTracker.Api.Features.Commands;
+using PriceTracker.Api.Features.Queries;
 using PriceTracker.Domain.Entities;
-using PriceTracker.Shared.Application.Features.Queries;
+using PriceTracker.Shared.Features.Queries;
 using PriceTracker.WinForms.Helpers;
 
 namespace PriceTracker.WinForms.Views

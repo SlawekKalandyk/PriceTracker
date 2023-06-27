@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PriceTracker.Api.Application.Features.Commands;
+using PriceTracker.Api.Features.Commands;
 using PriceTracker.Domain.Entities;
 using PriceTracker.WinForms.Helpers;
 

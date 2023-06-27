@@ -2,13 +2,11 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceTracker.Api.Application;
-using PriceTracker.Api.Infrastructure;
+using PriceTracker.Api;
 using PriceTracker.Plugins;
-using PriceTracker.Shared.Application;
-using PriceTracker.Shared.Application.Features.Commands;
-using PriceTracker.Shared.Infrastructure;
-using PriceTracker.Shared.Infrastructure.Persistence;
+using PriceTracker.Shared;
+using PriceTracker.Shared.Features.Commands;
+using PriceTracker.Shared.Persistence;
 using PriceTracker.WinForms.Views;
 
 namespace PriceTracker.WinForms
@@ -50,10 +48,8 @@ namespace PriceTracker.WinForms
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSharedApplicationServices(hostContext.Configuration)
-                        .AddSharedInfrastructureServices(hostContext.Configuration)
-                        .AddApiApplicationServices(hostContext.Configuration)
-                        .AddApiInfrastructureServices(hostContext.Configuration)
+                    services.AddSharedServices(hostContext.Configuration)
+                        .AddApiServices(hostContext.Configuration)
                         .AddPluginShopServices(hostContext.Configuration)
                         .AddInterfaceServices(hostContext.Configuration);
                 }).Build();
