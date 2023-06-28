@@ -1,6 +1,6 @@
 ﻿namespace PriceTracker.Notifier.Notifications
 {
-    internal interface INotification
+    public interface INotification
     {
         void Show();
     }

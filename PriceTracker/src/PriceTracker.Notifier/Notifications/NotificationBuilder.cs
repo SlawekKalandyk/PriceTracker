@@ -1,6 +1,6 @@
 ﻿namespace PriceTracker.Notifier.Notifications
 {
-    internal class NotificationBuilder
+    public class NotificationBuilder
     {
         private readonly BaseNotification _notification;
 

@@ -30,7 +30,7 @@ namespace PriceTracker.Scraper
                         .AddPluginShopServices(hostContext.Configuration)
                         .AddHostedService<ScraperHostedService>();
                 }).Build();
-
+            
             await host.RunAsync();
         }
     }

@@ -25,6 +25,7 @@ namespace PriceTracker.Notifier
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSharedServices(hostContext.Configuration)
+                        .AddNotifierServices(hostContext.Configuration)
                         .AddHostedService<NotifierHostedService>();
                 }).Build();
 
